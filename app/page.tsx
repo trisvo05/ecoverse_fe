@@ -1,103 +1,129 @@
-import Image from "next/image";
+import Sanpham from "@/components/sanpham";
+import { Button } from "@/components/ui/button";
+import { ShoppingBasket } from "lucide-react";
+// import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="mt-[50px]">
+      {/* banner */}
+      <div className="rounded-3xl h-[450px] w-full overflow-hidden relative ">
+        <img src="https://plus.unsplash.com/premium_photo-1675127366598-f6c344e5233b?q=80&w=1116&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="object-cover w-full h-full"/>
+        {/* button MUA SAM NGAY */}
+        <Link href={"/products"}   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-black bg-green-600 p-3 rounded-lg ">MUA SAM NGAY</Link>
+      </div>
+      {/* service */}
+      {/* san pham moi */}
+      <div className="p-10 flex flex-col items-center gap-10 bg-white rounded-4xl mt-[100px] mb-[100px]">
+        <h1 className="text-5xl"> CÁC SẢN PHẨM MỚI</h1>
+        {/* bọc các sản phẩm vầo flex  */}
+        <div className="flex flex-row items-center justify-between w-full">
+          <Sanpham/>
+          <Sanpham/>
+          <Sanpham/>
+          <Sanpham/>
+          <Sanpham/>
+          <Sanpham/>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {/* Xem tat ca */}
+        <Button className="bg-green-700 w-[300px] "><Link href="/products" className="">XEM TẤT CẢ</Link></Button>
+      </div>
+
+
+
+      {/* Top cac thuong hieu */}
+      <div className="rounded-3xl bg-white p-[30px]">
+        <h1 className="text-center text-3xl ">THUONG HIEU HANG DAU</h1>
+        <div className="flex items-center justify-around">
+          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
+          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
+          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
+          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
+          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
+        </div>
+      </div>
+
+
+
+
+      {/* Pho bien theo danh muc */}
+      <div className="rounded-3xl bg-white mt-[80px] p-[50px] py-[60px] flex flex-col gap-y-8">
+        <div className="text-center text-4xl">
+          {/* title */}
+          <h1 className="">SẢN PHẨM PHỔ BIẾN </h1>
+          <h1>THEO DANH MỤC</h1>
+        </div>
+
+        {/* Cac danh muc */}
+        <div className="flex items-center justify-between">
+          <div className="text-white bg-black rounded-lg p-2">MOST POPULAR</div>  
+          <div>BRAKING SYSTEM</div>  
+          <div>AXLES & COMPONENTS</div>  
+          <div>LOADING RAMS</div>  
+          <div>MOST POPULAR</div>  
+          <div>WHELL STRAPS</div>  
+
+        </div>
+
+        {/* cac san pham theo danh muc  */}
+        <div className="flex justify-between">
+          <Sanpham/>
+          <Sanpham/>
+          <Sanpham/>
+          <Sanpham/>
+          <Sanpham/>
+          <Sanpham/>
+        </div>
+        <div className="m-auto">
+          <Button className="bg-green-700 w-[300px] h-[50px] m-auto "><Link href="/products" className="">XEM TẤT CẢ</Link></Button>
+        </div>
+      </div>
+
+
+
+
+
+      {/* KPI Platform  */}
+      <div className="flex items-center justify-around rounded-3xl bg-white p-[40px] mt-[80px]">
+        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
+          <ShoppingBasket size={100} color="#1d903a" />
+          <div>500+ SAN PHAM XANH </div>
+          <div>From essentials to specialty components — all in one place.</div>
+        </div>
+        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
+          <ShoppingBasket size={100} color="#1d903a" />
+          <div>500+ SAN PHAM XANH </div>
+          <div>From essentials to specialty components — all in one place.</div>
+        </div>
+        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
+          <ShoppingBasket size={100} color="#1d903a" />
+          <div>500+ SAN PHAM XANH </div>
+          <div>From essentials to specialty components — all in one place.</div>
+        </div>
+      </div>
+
+
+      {/* Contact sdt*/}
+      <div className="text-center py-40 flex flex-col items-center justify-between gap-10">
+        <div>
+          <h1 className="text-4xl">Bạn cần hỗ trợ bởi ECOVERSE ?</h1>
+          <h1 className="text-2xl">+84 839 328 490</h1>
+        </div>
+        <button className="bg-green-600 text-black px-3 py-2 rounded-sm">LIÊN HỆ NGAY</button>
+      </div>
+
+
+      {/* Contact email */}
+      <div className="rounded-3xl bg-[url('/banner.png')] h-[500px] w-full text-white flex flex-col items-center gap-10 pt-[200px] ">
+        <h1 className="text-4xl">ĐĂNG KÝ ĐỂ NHẬN TIN CỦA ECOVERSE</h1>
+        <div>Tìm hiểu thông tin của các sản phẩm mới , các chương trình giảm giá và nhiều hơn nữa ...</div>
+        <form action="/" className="flex w-[500px] gap-x-2">
+          <input type="email" placeholder="Nhập email của bạn ..." className=" px-20 py-2 border-2 border-solid border-gray-200 rounded-sm"/>
+          <button className="rounded-sm bg-green-800 px-10">ĐĂNG KÝ</button>
+        </form>
+      </div>
     </div>
   );
 }
