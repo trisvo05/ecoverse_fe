@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -8,18 +9,8 @@ import { Chakra_Petch } from "next/font/google";
 
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"], 
-  weight: ["400", "500", "700"], // chọn các độ dày bạn muốn
+  weight: ["400", "500", "700"], 
 });
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: "EcoVerse",
@@ -32,10 +23,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en" className="p-[32px] bg-[#F2F2F2]">
-      {/* Đặt chatbot nổi không ảnh hưởng bởi các component khác */}
-      <Chatbot/>
+  
+      {/* <Chatbot/> */}
       <body
         className={`${chakraPetch.className}  antialiased bg-[#F2F2F2]`} 
       >
@@ -43,6 +35,7 @@ export default function RootLayout({
         <Header  />
         {children}
         <Footer />
+        
       </body>
     </html>
   );

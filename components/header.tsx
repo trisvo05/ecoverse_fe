@@ -1,5 +1,5 @@
+"use client"
 import { ChevronDown, Search, ShoppingCart, User } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 // import dropdwon 
 import {
@@ -23,10 +23,14 @@ import {
 } from "@/components/ui/sheet"
 import Quantity from "./quantity_edit";
 import Sanpham2 from "./sanpham2";
+import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 
 
 const Header = () =>{
+    // const router = useRouter();
+    const hideHeaderPhu = usePathname() === "/shopping/checkout"
     return (
         <div className="flex flex-col items-center gap-6  mb-[60px] mt-[-32px] mx-[-32px]">
             {/* Header chinh */}
@@ -86,7 +90,7 @@ const Header = () =>{
                                     </div>
                                     <div className="flex justify-between s">
                                         <Link href={"/shopping/cart"} className="py-2 w-1/2 rounded-sm border-solid border-2 border-gray-2 text-center">Xem gio hang</Link>
-                                        <Link href={"/shopping/cart"} className="py-2 w-1/2 rounded-sm border-solid border-2 border-gray-2 text-center bg-green-400">Thanh toan</Link>
+                                        <Link href={"/shopping/checkout"} className="py-2 w-1/2 rounded-sm border-solid border-2 border-gray-2 text-center bg-green-400">Thanh toan</Link>
                                     </div>
                                 </div>
                             </div>
@@ -96,17 +100,19 @@ const Header = () =>{
                     
                 </div>
 
-            </div>     
-            {/* Header phu */}    
+            </div>  
+               {/*Header phu  */}
+            {!hideHeaderPhu &&
+           
             <div className="w-[70%] flex items-center justify-between text-[14px]">
-                <div><Link href={"/ecoverse/about_me"}>Về chúng tôi</Link></div>
-                <div>Liên hệ</div>
-                <div>Thông tin thanh toán</div>
-                <div>Chính sách bảo mật</div>
-                <div className="border-r-2 border-solid border-amber-400"></div>
-                <div>+84 839 328 490</div>
-                <div>minhtrivo2005gg@gmail.com</div>
-            </div>            
+                    <div><Link href={"/ecoverse/about_me"}>Về chúng tôi</Link></div>
+                    <div>Liên hệ</div>
+                    <div>Thông tin thanh toán</div>
+                    <div>Chính sách bảo mật</div>
+                    <div className="border-r-2 border-solid border-amber-400"></div>
+                    <div>+84 839 328 490</div>
+                    <div>minhtrivo2005gg@gmail.com</div>
+            </div> }  
         </div>
     )
 }

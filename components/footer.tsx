@@ -1,6 +1,12 @@
+'use client'
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
+import { usePathname } from "next/navigation";
+// import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router"
 
 const Footer = () =>{
+    const hideFooter = usePathname() === "/shopping/checkout"
+    if (hideFooter) return null;
     return (
         <div className="mt-[100px] mx-[-32px] mb-[-32px] ">
             <img src="/logo.png" alt="" className="h-[400px] w-[400px] object-cover m-auto mb-[50px]"/>

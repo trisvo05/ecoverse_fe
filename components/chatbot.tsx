@@ -1,7 +1,7 @@
 const Chatbot = () =>{
     return (
         <div>
-            {/* chatbot */}
+            {/* chatbot */}chabto 
         </div>
     )
 }
