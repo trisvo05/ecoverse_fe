@@ -28,7 +28,7 @@ export default function Home() {
 
         </div>
         {/* Xem tat ca */}
-        <Button className="bg-green-700 w-[300px] "><Link href="/products" className="">XEM TẤT CẢ</Link></Button>
+        <div className="cursor-pointer"><Link href="/products" className="cursor-pointer"><Button className="bg-green-700 w-[300px] cursor-pointer ">XEM TẤT CẢ</Button></Link></div>
       </div>
 
 
@@ -77,7 +77,7 @@ export default function Home() {
           <Sanpham/>
         </div>
         <div className="m-auto">
-          <Button className="bg-green-700 w-[300px] h-[50px] m-auto "><Link href="/products" className="">XEM TẤT CẢ</Link></Button>
+          <Button className="bg-green-700 w-[300px] h-[50px] m-auto cursor-pointer "><Link href="/products" className="">XEM TẤT CẢ</Link></Button>
         </div>
       </div>
 

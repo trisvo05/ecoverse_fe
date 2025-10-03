@@ -1,3 +1,4 @@
+import Quantity from "@/components/quantity_edit";
 import Sanpham from "@/components/sanpham";
 
 const Page = () =>{
@@ -23,11 +24,7 @@ const Page = () =>{
                     {/* add to cart */}
                     <div className="flex items-center ">
                         {/* So don hang */}
-                        <div className="flex items-center justify-around py-2 px-10 gap-5 border-solid border-2 border-gray-200 w-1/4 rounded-[6px]">
-                            <button>-</button>
-                            <span>1</span>
-                            <button>+</button>
-                        </div>
+                        <Quantity/>
                         <div className="border-solid border-2 border-gray-200 w-3/4 ml-5 bg-green-400 py-2 px-10 rounded-[6px]">
                             <button>THEM VAO GIO HANG</button>
                         </div>

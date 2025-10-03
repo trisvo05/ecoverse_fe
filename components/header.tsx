@@ -10,6 +10,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+
+
+// import sheet de bieu thi cart modal 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import Quantity from "./quantity_edit";
+import Sanpham2 from "./sanpham2";
+
+
+
 const Header = () =>{
     return (
         <div className="flex flex-col items-center gap-6  mb-[60px] mt-[-32px] mx-[-32px]">
@@ -42,16 +58,48 @@ const Header = () =>{
                 
                 {/* tim kiem , profile , gio hang */}
                 <div className="flex items-center justify-between gap-10">
-                    <Search />
-                    <User />
+                    <Search className="cursor-pointer"/>
+                    <User className="cursor-pointer" />
                     {/* <Link href={""}></Link>s */}
-                    <ShoppingCart />
+                    <Sheet >
+                        <SheetTrigger><ShoppingCart className="cursor-pointer" /></SheetTrigger>
+                        <SheetContent className="max-w-[800px] sm:max-w-[500px] h-full  ">
+                            <SheetHeader>
+                            <SheetTitle>GIO HANG CUA TOI</SheetTitle>
+                            {/*  */}
+                            <div className="flex flex-col gap-5">
+                                <h1 className="text-2xl">GIO HANG [7]</h1>
+                                {/* cac san pham trong CART */}
+                                <div className="w-full h-[500px] overflow-scroll overflow-x-hidden flex flex-col gap-10">
+                                    {/* san pham 1 */}
+                                    <Sanpham2/>
+                                    <Sanpham2/>
+                                    <Sanpham2/>
+                                    <Sanpham2/>
+                                    <Sanpham2/>
+                                </div>
+                                {/* Thanh toan */}
+                                <div className="mt-5">
+                                    <div className="flex justify-between text-2xl">
+                                        <div>TONG</div>
+                                        <div>$1,903.95 USD</div>
+                                    </div>
+                                    <div className="flex justify-between s">
+                                        <Link href={"/shopping/cart"} className="py-2 w-1/2 rounded-sm border-solid border-2 border-gray-2 text-center">Xem gio hang</Link>
+                                        <Link href={"/shopping/cart"} className="py-2 w-1/2 rounded-sm border-solid border-2 border-gray-2 text-center bg-green-400">Thanh toan</Link>
+                                    </div>
+                                </div>
+                            </div>
+                            </SheetHeader>
+                        </SheetContent>
+                    </Sheet>
+                    
                 </div>
 
             </div>     
             {/* Header phu */}    
             <div className="w-[70%] flex items-center justify-between text-[14px]">
-                <div>Về chúng tôi</div>
+                <div><Link href={"/ecoverse/about_me"}>Về chúng tôi</Link></div>
                 <div>Liên hệ</div>
                 <div>Thông tin thanh toán</div>
                 <div>Chính sách bảo mật</div>
