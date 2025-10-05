@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import Chatbot from "@/components/chatbot";
 import { Chakra_Petch } from "next/font/google";
 
 const chakraPetch = Chakra_Petch({

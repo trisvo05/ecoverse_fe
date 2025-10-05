@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { useEffect, useState } from "react"
@@ -24,8 +25,11 @@ type FormValues = {
 
 export default function OrderForm() {
   const { register, handleSubmit, setValue, watch } = useForm<FormValues>()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [provinces, setProvinces] = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [districts, setDistricts] = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [wards, setWards] = useState<any[]>([])
 
   // giả sử bạn có cart giá trị
