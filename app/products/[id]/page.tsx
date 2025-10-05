@@ -21,19 +21,38 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+// import { Progress } from "@/components/ui/progress";
+// import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
+interface ProductData {
+  ten_san_pham: string;
+  danh_muc?: { ten_danh_muc: string }[];
+  loai_san_pham?: string;
+  hinh_anh_chinh?: { url: string };
+  chung_chi_xanh?: { co_chung_chi: boolean };
+  mo_ta?: string;
+  gia_ban: number;
+  so_luong_ton_kho: number;
+}
+
 const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [productData, setProductData] = useState<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [reviewsData, setReviewsData] = useState<any>(null);
+
+  const [productData, setProductData] = useState<ProductData | null>(null);
+
+  interface ReviewsData {
+    rating_stats: {
+      average_rating: number;
+      total_reviews: number;
+    };
+    // Add more fields if needed
+  }
+
+  const [reviewsData, setReviewsData] = useState<ReviewsData | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [hoverRating, setHoverRating] = useState(0);
+//   const [hoverRating, setHoverRating] = useState(0);
   const [loading, setLoading] = useState(true);
 
   // Format helpers
@@ -43,12 +62,12 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
       currency: "VND",
     }).format(price);
 
-  const formatDate = (dateString: string) =>
-    new Date(dateString).toLocaleDateString("vi-VN", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+//   const formatDate = (dateString: string) =>
+//     new Date(dateString).toLocaleDateString("vi-VN", {
+//       year: "numeric",
+//       month: "long",
+//       day: "numeric",
+//     });
 
   const renderStars = (rating: number) => (
     <div className="flex gap-1">
