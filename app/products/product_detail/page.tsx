@@ -63,11 +63,11 @@ const Page = () =>{
                 <h1 className="mb-[20px] text-center text-4xl">CAC SAN PHAM TUONG TU </h1>
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-5">
                     <Sanpham/>
+                    {/* <Sanpham/>
                     <Sanpham/>
                     <Sanpham/>
                     <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
+                    <Sanpham/> */}
 
                 </div>
             </div>

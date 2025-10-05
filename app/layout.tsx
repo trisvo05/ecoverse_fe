@@ -8,8 +8,9 @@ import Chatbot from "@/components/chatbot";
 import { Chakra_Petch } from "next/font/google";
 
 const chakraPetch = Chakra_Petch({
-  subsets: ["latin"], 
-  weight: ["400", "500", "700"], 
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

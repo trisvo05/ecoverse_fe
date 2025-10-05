@@ -20,12 +20,7 @@ export default function Home() {
         {/* bọc các sản phẩm vầo flex  */}
         <div className="flex flex-row items-center justify-between w-full">
           <Sanpham/>
-          <Sanpham/>
-          <Sanpham/>
-          <Sanpham/>
-          <Sanpham/>
-          <Sanpham/>
-
+    
         </div>
         {/* Xem tat ca */}
         <div className="cursor-pointer"><Link href="/products" className="cursor-pointer"><Button className="bg-green-700 w-[300px] cursor-pointer ">XEM TẤT CẢ</Button></Link></div>
@@ -70,11 +65,7 @@ export default function Home() {
         {/* cac san pham theo danh muc  */}
         <div className="flex justify-between">
           <Sanpham/>
-          <Sanpham/>
-          <Sanpham/>
-          <Sanpham/>
-          <Sanpham/>
-          <Sanpham/>
+    
         </div>
         <div className="m-auto">
           <Button className="bg-green-700 w-[300px] h-[50px] m-auto cursor-pointer "><Link href="/products" className="">XEM TẤT CẢ</Link></Button>

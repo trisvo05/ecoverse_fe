@@ -1,19 +1,13 @@
 import Sanpham2 from "@/components/sanpham2"
+import OrderForm from "@/components/test_component/input"
 
 const Page = ()  =>{
     return (
         <div className="flex gap-x-10  mt-[-60px] mx-[-32px] bg-[rgb(234,234,234)] border-t-1 border-solid border-gray-300">
             {/* form nhap thong tin don hang ( thong tin ca nhan  , van chuyen ) */}
             <div className="w-1/2 h-[1200px] bg-white">
-
-            asdajsdj
-            
-            
+                <OrderForm/> 
             </div>
-
-
-
-
 
             {/* thong tin don hang  */}
             <div className="sticky top-0 right-0 w-1/2 h-full  bg-[rgb(234,234,234)]  w-[500px] ">

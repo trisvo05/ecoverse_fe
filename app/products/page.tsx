@@ -59,28 +59,9 @@ const Page = ()  =>{
 
 
                 {/*  Cac san pham  */}
-                <div className="flex items-center justify-between flex-wrap gap-y-10 ">
+                <div className="">
                     <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    <Sanpham/>
-                    
+  
                 </div>
 
 
