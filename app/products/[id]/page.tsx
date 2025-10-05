@@ -26,7 +26,9 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
 const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [productData, setProductData] = useState<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [reviewsData, setReviewsData] = useState<any>(null);
   const [quantity, setQuantity] = useState(1);
   const [reviewRating, setReviewRating] = useState(0);
