@@ -4,10 +4,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
+type Product = {
+  id: string | number;
+  hinh_anh?: string;
+  ten_san_pham?: string;
+  gia_ban?: number;
+  chung_chi_xanh?: {
+    co_chung_chi?: boolean;
+  };
+};
+
 const Sanpham = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true); // trạng thái loading
-  const [error, setError] = useState(null); // trạng thái lỗi
+  const [error, setError] = useState<string | null>(null); // trạng thái lỗi
 
   const fetchProductData = async () => {
     try {
