@@ -6,11 +6,7 @@ import {
   CreditCard,
   Star,
   Leaf,
-  Award,
   Package,
-  TrendingDown,
-  Calendar,
-  User,
 } from "lucide-react";
 import {
   Card,
@@ -50,8 +46,8 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
 
   const [reviewsData, setReviewsData] = useState<ReviewsData | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const [reviewRating, setReviewRating] = useState(0);
-  const [reviewText, setReviewText] = useState("");
+//   const [reviewRating, setReviewRating] = useState(0);
+//   const [reviewText, setReviewText] = useState("");
 //   const [hoverRating, setHoverRating] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -90,12 +86,14 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://ecoverse.namtech.me/api/tmdt/products/${id}`
-        //   {
-        //     jsonrpc: "2.0",
-        //     method: "call",
-        //     params: {},
-        //   }
+          `https://ecoverse.namtech.me/api/tmdt/products/${id}`,
+          {
+            headers: {
+            "Content-Type": "application/json",
+            // "Authorization": "Bearer <token>", 
+            "Access-Control-Allow-Origin": "*", // ❌ dòng này KHÔNG có tác dụng ở client
+            },}
+  
         );
         console.log(response)
 
@@ -114,12 +112,12 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
     const fetchReviews = async () => {
       try {
         const res = await axios.get(
-          `https://ecoverse.namtech.me/api/tmdt/reviews/${id}`,
-        //   {
-        //     jsonrpc: "2.0",
-        //     method: "call",
-        //     params: {},
-        //   }
+          `https://ecoverse.namtech.me/api/tmdt/products/${id}/reviews`,
+      //   {headers: {
+      //   "Authorization": "Bearer your_token_here",
+      //   "Content-Type": "application/json",
+      //   "Custom-Header": "HelloWorld"
+      // },}
         );
         if (res.data?.result?.success) {
           setReviewsData(res.data.result.data);
@@ -136,13 +134,13 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
   // Handle actions
   const handleAddToCart = () => alert(`Đã thêm ${quantity} sản phẩm vào giỏ hàng!`);
   const handleCheckout = () => alert(`Tiến hành thanh toán ${quantity} sản phẩm!`);
-  const handleSubmitReview = () => {
-    if (reviewRating === 0) return alert("Vui lòng chọn số sao đánh giá!");
-    if (reviewText.trim() === "") return alert("Vui lòng nhập nội dung đánh giá!");
-    alert(`Đã gửi đánh giá ${reviewRating} sao:\n${reviewText}`);
-    setReviewRating(0);
-    setReviewText("");
-  };
+//   const handleSubmitReview = () => {
+//     if (reviewRating === 0) return alert("Vui lòng chọn số sao đánh giá!");
+//     if (reviewText.trim() === "") return alert("Vui lòng nhập nội dung đánh giá!");
+//     alert(`Đã gửi đánh giá ${reviewRating} sao:\n${reviewText}`);
+//     setReviewRating(0);
+//     setReviewText("");
+//   };
 
   if (loading)
     return (

@@ -4,6 +4,9 @@ import { ShoppingBasket } from "lucide-react";
 // import Image from "next/image";
 import Link from "next/link";
 
+
+
+
 export default function Home() {
   return (
     <div className="mt-[50px]">
@@ -18,9 +21,10 @@ export default function Home() {
       <div className="p-10 flex flex-col items-center gap-10 bg-white rounded-4xl mt-[100px] mb-[100px]">
         <h1 className="text-5xl"> CÁC SẢN PHẨM MỚI</h1>
         {/* bọc các sản phẩm vầo flex  */}
-        <div className="flex flex-row items-center justify-between w-full">
+        <div className="flex flex-row items-center gap-10 w-full">
           <Sanpham/>
-    
+ 
+
         </div>
         {/* Xem tat ca */}
         <div className="cursor-pointer"><Link href="/products" className="cursor-pointer"><Button className="bg-green-700 w-[300px] cursor-pointer ">XEM TẤT CẢ</Button></Link></div>
@@ -63,9 +67,9 @@ export default function Home() {
         </div>
 
         {/* cac san pham theo danh muc  */}
-        <div className="flex justify-between">
+        <div className="flex gap-10">
           <Sanpham/>
-    
+      
         </div>
         <div className="m-auto">
           <Button className="bg-green-700 w-[300px] h-[50px] m-auto cursor-pointer "><Link href="/products" className="">XEM TẤT CẢ</Link></Button>

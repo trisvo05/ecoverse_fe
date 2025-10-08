@@ -33,7 +33,7 @@ const Sanpham = () => {
       const fetchedProducts = response?.data?.result?.data?.products || [];
       setProducts(fetchedProducts);
     } catch (err) {
-      console.error("Error fetching products:", err);
+      console.error("catch error :", err);
       setError("Không thể tải dữ liệu sản phẩm. Vui lòng thử lại sau.");
     } finally {
       setLoading(false);
@@ -52,9 +52,10 @@ const Sanpham = () => {
     return <div className="text-center mt-10 text-red-500">{error}</div>;
   }
 
-  return (
-    <div className="flex flex-wrap justify-center gap-6 p-6">
-      {products.length === 0 ? (
+    return (
+    <>
+      {products.length === 0 ? 
+       (
         <div className="text-gray-600">Không có sản phẩm nào.</div>
       ) : (
         products.map((p, index) => (
@@ -81,8 +82,8 @@ const Sanpham = () => {
           </Link>
         ))
       )}
-    </div>
-  );
+    </>
+    )
 };
 
 export default Sanpham;
