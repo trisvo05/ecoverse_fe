@@ -25,6 +25,8 @@ import Quantity from "./quantity_edit";
 import Sanpham2 from "./sanpham2";
 import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
+import Protected from "./protected/Protected";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -32,6 +34,7 @@ const Header = () =>{
     // const router = useRouter();
     const hideHeaderPhu = usePathname() === "/shopping/checkout"
     return (
+        
         <div className="flex flex-col items-center gap-6  mb-[60px] mt-[-32px] mx-[-32px]">
             {/* Header chinh */}
             <div className="h-[120px] w-[100%] flex items-center justify-between p-10  bg-white  ">
@@ -67,7 +70,9 @@ const Header = () =>{
                     {/* <Link href={""}></Link>s */}
                     <Sheet >
                         <SheetTrigger><ShoppingCart className="cursor-pointer" /></SheetTrigger>
+                        
                         <SheetContent className="max-w-[800px] sm:max-w-[500px] h-full  ">
+                            <Protected>
                             <SheetHeader>
                             <SheetTitle>GIO HANG CUA TOI</SheetTitle>
                             {/*  */}
@@ -95,6 +100,7 @@ const Header = () =>{
                                 </div>
                             </div>
                             </SheetHeader>
+                            </Protected>
                         </SheetContent>
                     </Sheet>
                     
