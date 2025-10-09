@@ -34,6 +34,11 @@ import Profile from "./change_dropdown_profile/page";
 const Header = () =>{
     // const router = useRouter();
     const hideHeaderPhu = usePathname() === "/shopping/checkout"
+
+    // xu ly xoa header trang LOGIN
+    const loginRoute = usePathname() 
+    if (loginRoute === "/login") return null
+  
     return (
         
         <div className="flex flex-col items-center gap-6  mb-[60px] mt-[-32px] mx-[-32px]">

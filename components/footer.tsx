@@ -5,8 +5,11 @@ import { usePathname } from "next/navigation";
 // import { useRouter } from "next/router"
 
 const Footer = () =>{
-    const hideFooter = usePathname() === "/shopping/checkout"
-    if (hideFooter) return null;
+    const hideFooter = usePathname() 
+    // const hideFooter = usePathname() === "/shopping/checkout"
+
+    if (hideFooter === "/shopping/checkout") return null;
+    else if (hideFooter === "/login") return null;
     return (
         <div className="mt-[100px] mx-[-32px] mb-[-32px] ">
             <img src="/logo.png" alt="" className="h-[400px] w-[400px] object-cover m-auto mb-[50px]"/>
