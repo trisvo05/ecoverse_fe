@@ -38,29 +38,40 @@ const Header = () =>{
         <div className="flex flex-col items-center gap-6  mb-[60px] mt-[-32px] mx-[-32px]">
             {/* Header chinh */}
             <div className="h-[120px] w-[100%] flex items-center justify-between p-10  bg-white  ">
-                {/* All products */}
-                <div className="hover:text-green-500 *:cursor-pointer">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger className="flex text-xl font-medium">DANH MUC SAN PHAM <ChevronDown /></DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            <DropdownMenuLabel></DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>Đồ gia dụng Xanh</DropdownMenuItem>
-                            <DropdownMenuItem>Đồ dùng cá nhân & Mỹ phẩm Xanh</DropdownMenuItem>
-                            <DropdownMenuItem>Thời trang bền vững</DropdownMenuItem>
-                            <DropdownMenuItem>Đồ dùng văn phòng & học tập xanh</DropdownMenuItem>
-                            <DropdownMenuItem>Sản phẩm sức khỏe & lối sông xanh</DropdownMenuItem>
-                            <DropdownMenuItem>Xem tất cả</DropdownMenuItem>
 
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-                {/* Logo */}
+                {/* 1. logo */}
                 <Link href={"/"}>
+                    
                     <div className="h-[180px] w-[180px] ">
                         <img src="/logo.png" alt="" className="object-cover" />
                     </div>
                 </Link>
+
+
+                {/* 2. Nav  */}
+                <div className="flex gap-10">
+                    <div className="hover:text-green-500 *:cursor-pointer">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger className="flex text-xl font-medium">SẢN PHẨM<ChevronDown /></DropdownMenuTrigger>
+                            <DropdownMenuContent className="">
+                                {/* <DropdownMenuLabel></DropdownMenuLabel> */}
+                                {/* <DropdownMenuSeparator /> */}
+                                <DropdownMenuItem className="text-[15px]">Đồ gia dụng Xanh</DropdownMenuItem>
+                                <DropdownMenuItem className="text-[15px]">Đồ dùng cá nhân & Mỹ phẩm Xanh</DropdownMenuItem>
+                                <DropdownMenuItem className="text-[15px]">Thời trang bền vững</DropdownMenuItem>
+                                <DropdownMenuItem className="text-[15px]">Đồ dùng văn phòng & học tập xanh</DropdownMenuItem>
+                                <DropdownMenuItem className="text-[15px]">Sản phẩm sức khỏe & lối sông xanh</DropdownMenuItem>
+                                <DropdownMenuItem className="text-[15px]">Xem tất cả</DropdownMenuItem>
+
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                    <Link href={"/ranking"}>
+                        <div className="hover:text-green-500 *:cursor-pointer text-xl font-medium">BẢNG XẾP HẠNG XANH</div>
+                    </Link>
+                </div>
+                
+                
            
                 
                 {/* tim kiem , profile , gio hang */}

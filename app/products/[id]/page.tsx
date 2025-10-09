@@ -88,11 +88,7 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
         const response = await axios.get(
           `https://ecoverse.namtech.me/api/tmdt/products/${id}`,
           {
-            headers: {
-            "Content-Type": "application/json",
-            // "Authorization": "Bearer <token>", 
-            "Access-Control-Allow-Origin": "*", // ❌ dòng này KHÔNG có tác dụng ở client
-            },}
+            "params":{}}
   
         );
         console.log(response)
@@ -111,13 +107,18 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
 
     const fetchReviews = async () => {
       try {
-        const res = await axios.get(
+        const res = await axios.post(
           `https://ecoverse.namtech.me/api/tmdt/products/${id}/reviews`,
-      //   {headers: {
-      //   "Authorization": "Bearer your_token_here",
-      //   "Content-Type": "application/json",
-      //   "Custom-Header": "HelloWorld"
-      // },}
+          {
+            // "jsonrpc": "2.0",
+            // "method": "call",
+            "params": {
+              "limit": 10,
+              "offset": 0,
+              "sort": "newest"
+            },
+            // "id": null
+          }
         );
         if (res.data?.result?.success) {
           setReviewsData(res.data.result.data);
