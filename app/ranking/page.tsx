@@ -306,7 +306,7 @@ const GreenLeaderboard = () => {
                   <th className="px-6 py-4 text-left  font-bold text-gray-700">Cấp độ</th>
                   <th className="px-6 py-4 text-center  font-bold text-gray-700">Điểm xanh</th>
                   <th className="px-6 py-4 text-center  font-bold text-gray-700">CO₂ (kg)</th>
-                  <th className="px-6 py-4 text-center  font-bold text-gray-700">Đơn hàng</th>
+                  <th className="px-6 py-4 text-center  font-bold text-gray-700">Đơn hàng xanh</th>
                   <th className="px-6 py-4 text-center  font-bold text-gray-700">Tỷ lệ xanh</th>
                 </tr>
               </thead>

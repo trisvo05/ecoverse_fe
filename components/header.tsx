@@ -27,6 +27,7 @@ import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 import Protected from "./protected/Protected";
 import { Toaster } from "react-hot-toast";
+import Profile from "./change_dropdown_profile/page";
 
 
 
@@ -49,10 +50,10 @@ const Header = () =>{
 
 
                 {/* 2. Nav  */}
-                <div className="flex gap-10">
+                <div className="flex gap-10 ml-[-700px]">
                     <div className="hover:text-green-500 *:cursor-pointer">
                         <DropdownMenu>
-                            <DropdownMenuTrigger className="flex text-xl font-medium">SẢN PHẨM<ChevronDown /></DropdownMenuTrigger>
+                            <DropdownMenuTrigger className="flex text-xl font-semibold">SẢN PHẨM<ChevronDown /></DropdownMenuTrigger>
                             <DropdownMenuContent className="">
                                 {/* <DropdownMenuLabel></DropdownMenuLabel> */}
                                 {/* <DropdownMenuSeparator /> */}
@@ -67,7 +68,7 @@ const Header = () =>{
                         </DropdownMenu>
                     </div>
                     <Link href={"/ranking"}>
-                        <div className="hover:text-green-500 *:cursor-pointer text-xl font-medium">BẢNG XẾP HẠNG XANH</div>
+                        <div className="hover:text-green-500 *:cursor-pointer text-xl font-semibold">BẢNG XẾP HẠNG XANH</div>
                     </Link>
                 </div>
                 
@@ -77,7 +78,7 @@ const Header = () =>{
                 {/* tim kiem , profile , gio hang */}
                 <div className="flex items-center justify-between gap-10">
                     <Search className="cursor-pointer"/>
-                    <User className="cursor-pointer" />
+                    <Profile/>
                     {/* <Link href={""}></Link>s */}
                     <Sheet >
                         <SheetTrigger><ShoppingCart className="cursor-pointer" /></SheetTrigger>
