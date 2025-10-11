@@ -98,7 +98,7 @@ export default function Login() {
                 required
                 value={email}
                 autoComplete="manger1@vietcycle.com"
-                placeholder="tài khoản demo :manager1@vietcycle.com"
+                placeholder="tài khoản demo :user"
                 onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
               />
@@ -127,7 +127,7 @@ export default function Login() {
                 id="password"
                 name="password"
                 type="password"
-                placeholder="mật khẩu demo:123456"
+                placeholder="mật khẩu demo:user"
                 required
                 autoComplete="current-password"
                 value={password}

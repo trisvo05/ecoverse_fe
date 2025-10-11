@@ -2,6 +2,7 @@
 import Sanpham from "@/components/sanpham";
 import { Button } from "@/components/ui/button";
 import { ShoppingBasket } from "lucide-react";
+import Image from "next/image";
 // import Image from "next/image";
 import Link from "next/link";
 
@@ -12,10 +13,10 @@ export default function Home() {
   return (
     <div className="mt-[50px]">
       {/* banner */}
-      <div className="rounded-3xl h-[450px] w-full overflow-hidden relative ">
-        <img src="https://plus.unsplash.com/premium_photo-1675127366598-f6c344e5233b?q=80&w=1116&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="object-cover w-full h-full"/>
+      <div className="rounded-3xl h-[450px] w-[1450px] overflow-hidden relative ">
+        <Image src="/banner2.png" alt="" width={10000} height={1000} className="object-cover object-top w-[100%] h-full"/>
         {/* button MUA SAM NGAY */}
-        <Link href={"/products"}   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-black bg-green-600 p-3 rounded-lg ">MUA SAM NGAY</Link>
+        <Link href={"/products"}   className="absolute top-4/5 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-white  bg-green-600 p-3 rounded-lg ">MUA SẮM NGAY </Link>
       </div>
       {/* service */}
       {/* san pham moi */}

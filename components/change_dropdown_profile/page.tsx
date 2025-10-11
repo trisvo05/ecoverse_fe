@@ -24,7 +24,7 @@ const Profile = () => {
     // Cookies.remove("access_token");
 
     // Chuyển hướng đến trang đăng nhập hoặc reload
-    router.push("https://ecoverse-five.vercel.app/login");
+    router.push("/login");
   };
 
   if (!sessionId)
@@ -36,7 +36,7 @@ const Profile = () => {
         <DropdownMenuContent>
           <DropdownMenuLabel>Đăng nhập ngay !!!</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <Link href="https://ecoverse-five.vercel.app/login">
+          <Link href="/login">
             <DropdownMenuItem>Đăng nhập</DropdownMenuItem>
           </Link>
           <Link href="https://ecoverse.namtech.me/web/signup">
