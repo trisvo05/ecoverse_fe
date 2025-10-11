@@ -1,7 +1,8 @@
 
 import Sanpham from "@/components/sanpham";
+import EcommerceSlideshow from "@/components/slideshow/page";
 import { Button } from "@/components/ui/button";
-import { ShoppingBasket } from "lucide-react";
+import { Handshake, ShoppingBasket, User } from "lucide-react";
 import Image from "next/image";
 // import Image from "next/image";
 import Link from "next/link";
@@ -11,14 +12,37 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="mt-[50px]">
+    <div className="mt-[50px] ">
       {/* banner */}
       <div className="rounded-3xl h-[450px] w-[1450px] overflow-hidden relative ">
         <Image src="/banner2.png" alt="" width={10000} height={1000} className="object-cover object-top w-[100%] h-full"/>
         {/* button MUA SAM NGAY */}
         <Link href={"/products"}   className="absolute top-4/5 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-white  bg-green-600 p-3 rounded-lg ">MUA SẮM NGAY </Link>
       </div>
+
+      {/* KPI Platform  */}
+      <div className="flex items-center justify-around rounded-3xl bg-white p-[40px] mt-[80px]">
+        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
+          <ShoppingBasket size={100} color="#1d903a" />
+          <div className="font-bold">500+ SẢN PHẨM XANH </div>
+          <div>Từ nhu yếu phẩm đến sản phẩm chuyên biệt — tất cả hội tụ trong một nền tảng</div>
+        </div>
+        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
+          <Handshake size={100} color="#1d903a" />
+          <div className="font-bold">200+ DOANH NGHIỆP ĐỒNG HÀNH</div>
+          <div>Cùng xây dựng hệ sinh thái bền vững — hướng đến tương lai xanh</div>
+        </div>
+        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
+          <User size={100} color="#1d903a" />
+          <div className="font-bold">10,000+ NGƯỜI TIÊU DÙNG XANH </div>
+          <div>Lan tỏa lối sống thân thiện môi trường — bắt đầu từ từng lựa chọn mua sắm</div>
+        </div>
+      </div>
+
+
+      
       {/* service */}
+      <EcommerceSlideshow />
       {/* san pham moi */}
       <div className="p-10 flex flex-col items-center gap-10 bg-white rounded-4xl mt-[100px] mb-[100px]">
         <h1 className="text-5xl"> CÁC SẢN PHẨM MỚI</h1>
@@ -36,14 +60,22 @@ export default function Home() {
 
       {/* Top cac thuong hieu */}
       <div className="rounded-3xl bg-white p-[30px]">
-        <h1 className="text-center text-3xl ">THUONG HIEU HANG DAU</h1>
-        <div className="flex items-center justify-around">
-          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
-          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
-          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
-          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
-          <img src="/logo.png" alt="" className="h-[220px] w0[220px] object-cover" />
+        <h1 className="text-center text-3xl ">THƯƠNG HIỆU HÀNG ĐẦU</h1>
+        <div className="overflow-hidden relative">
+        <div className="flex items-center justify-between gap-10 animate-marquee">
+          <img src="/brand_ecofund2.png" alt="" className="h-[220px] w-[220px] object-cover" />
+          <img src="/brand_vietcycle.webp" alt="" className="h-[220px] w-[220px] object-cover" />
+          <img src="/logo.png" alt="" className="h-[220px] w-[220px] object-cover" />
+          <img src="/brand_relotus2.png" alt="" className="h-[180px] w-[180px] object-cover" />
+          <img src="/logo.png" alt="" className="h-[220px] w-[220px] object-cover" />
+          <img src="/brand_ecofund2.png" alt="" className="h-[220px] w-[220px] object-cover" />
+          <img src="/brand_vietcycle.webp" alt="" className="h-[220px] w-[220px] object-cover" />
+          <img src="/logo.png" alt="" className="h-[220px] w-[220px] object-cover" />
+          <img src="/brand_relotus2.png" alt="" className="h-[180px] w-[180px] object-cover" />
+          <img src="/logo.png" alt="" className="h-[220px] w-[220px] object-cover" />
         </div>
+      </div>
+
       </div>
 
 
@@ -82,33 +114,16 @@ export default function Home() {
 
 
 
-      {/* KPI Platform  */}
-      <div className="flex items-center justify-around rounded-3xl bg-white p-[40px] mt-[80px]">
-        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
-          <ShoppingBasket size={100} color="#1d903a" />
-          <div>500+ SAN PHAM XANH </div>
-          <div>From essentials to specialty components — all in one place.</div>
-        </div>
-        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
-          <ShoppingBasket size={100} color="#1d903a" />
-          <div>500+ SAN PHAM XANH </div>
-          <div>From essentials to specialty components — all in one place.</div>
-        </div>
-        <div className="flex flex-col items-center gap-5 w-[300px] text-center">
-          <ShoppingBasket size={100} color="#1d903a" />
-          <div>500+ SAN PHAM XANH </div>
-          <div>From essentials to specialty components — all in one place.</div>
-        </div>
-      </div>
+
 
 
       {/* Contact sdt*/}
       <div className="text-center py-40 flex flex-col items-center justify-between gap-10">
         <div>
           <h1 className="text-4xl">Bạn cần hỗ trợ bởi ECOVERSE ?</h1>
-          <h1 className="text-2xl">+84 839 328 490</h1>
+          <div  className="text-2xl">+84 839 328 490</div>
         </div>
-        <button className="bg-green-600 text-black px-3 py-2 rounded-sm">LIÊN HỆ NGAY</button>
+        <a href="tel:+84839328490" className="bg-green-600  px-3 py-2 rounded-sm text-white">LIÊN HỆ NGAY</a>
       </div>
 
 

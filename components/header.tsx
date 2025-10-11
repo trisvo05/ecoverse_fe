@@ -98,6 +98,14 @@ const Header = () => {
               SỐNG XANH - MUA CŨ
             </div>
           </Link>
+          <a
+            href="https://ecofundx.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={getLinkClass("https://ecofundx.vercel.app/")}
+            >
+            GREEN CROWDFUNDING
+            </a>
         </div>
 
         {/* 3. Search, Profile, Cart */}
@@ -161,12 +169,12 @@ const Header = () => {
       {!hideHeaderPhu && (
         <div className="w-[70%] flex items-center justify-between text-[14px] text-gray-700">
           <Link href={"/ecoverse/about_me"}>Về chúng tôi</Link>
-          <div>Liên hệ</div>
-          <div>Thông tin thanh toán</div>
-          <div>Chính sách bảo mật</div>
-          <div className="border h-[18px] border-gray-400 mx-2"></div>
-          <div>+84 839 328 490</div>
-          <div>minhtrivo2005gg@gmail.com</div>
+          <Link href={""}>Liên hệ</Link>
+          <Link href={""}>Thông tin thanh toán</Link>
+          <Link href={""}>Chính sách bảo mật</Link>
+          <Link href={""} className="border h-[18px] border-gray-400 mx-2"></Link>
+          <a href="tel:+848339328490">+84 839 328 490</a>
+          <a href="mailto:minhtrivo2005gg@gmail.com">minhtrivo2005gg@gmail.com</a>
         </div>
       )}
     </div>
