@@ -29,8 +29,8 @@ const categories = ['Điện thoại', 'Laptop', 'Máy tính bảng', 'Phụ ki�
 const brands = ['Apple', 'Samsung', 'Dell', 'Sony', 'Xiaomi', 'Asus'];
 
 export default function ProductPage() {
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState([0, 60000000]);
   const [minRating, setMinRating] = useState(0);
   const [sortBy, setSortBy] = useState('name');
@@ -39,7 +39,7 @@ export default function ProductPage() {
   const [itemsPerPage, setItemsPerPage] = useState(6);
 
   // Xử lý lọc danh mục
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category: string) => {
     setSelectedCategories(prev =>
       prev.includes(category)
         ? prev.filter(c => c !== category)
@@ -48,7 +48,7 @@ export default function ProductPage() {
   };
 
   // Xử lý lọc thương hiệu
-  const handleBrandChange = (brand) => {
+  const handleBrandChange = (brand:string) => {
     setSelectedBrands(prev =>
       prev.includes(brand)
         ? prev.filter(b => b !== brand)
@@ -58,6 +58,7 @@ export default function ProductPage() {
 
   // Lọc và sắp xếp sản phẩm
   const filteredProducts = useMemo(() => {
+    // eslint-disable-next-line prefer-const
     let filtered = products.filter(product => {
       const matchCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
       const matchBrand = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
