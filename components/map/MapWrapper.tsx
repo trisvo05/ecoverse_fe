@@ -1,4 +1,4 @@
-// MapWrapper.tsx
+// fix loi
 "use client";
 import dynamic from 'next/dynamic';
 

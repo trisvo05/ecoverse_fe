@@ -170,8 +170,8 @@ const Header = () => {
       {/* Header phụ */}
       {!hideHeaderPhu && (
         <div className="w-[70%] flex items-center justify-between text-[14px] text-gray-700">
-          <Link href={"/ecoverse/about_me"}>Về chúng tôi</Link>
-          <Link href={"/ecoverse/lien_he"}>Liên hệ</Link>
+          <Link href={"/ecoverse/about_us"}>Về chúng tôi</Link>
+          <Link href={"/ecoverse/contact_us"}>Liên hệ</Link>
           <Link href={"/"}>Thông tin thanh toán</Link>
           <Link href={"/"}>Chính sách bảo mật</Link>
           <Link href={""} className="border h-[18px] border-gray-400 mx-2"></Link>

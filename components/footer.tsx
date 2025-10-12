@@ -50,7 +50,7 @@ const Footer = () =>{
                             <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-gray-600">Liên kết nhanh</h3>
                             <ul className="space-y-2">
                                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center text-sm"><i className="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>Trang chủ</a></li>
-                                <li><a href="/ecoverse/about_me" className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center text-sm"><i className="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>Về chúng tôi</a></li>
+                                <li><a href="/ecoverse/about_us" className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center text-sm"><i className="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>Về chúng tôi</a></li>
                                 <li><a href="#services" className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center text-sm"><i className="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>Dịch vụ</a></li>
                                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center text-sm"><i className="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>Dự án</a></li>
                                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center text-sm"><i className="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>Blog</a></li>
