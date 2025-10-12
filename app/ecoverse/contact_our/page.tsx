@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Map from '@/components/map/map';
+import MapWrapper from '@/components/map/MapWrapper';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -112,7 +113,7 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="w-full h-[550px] bg-slate-200 flex items-center justify-center">
-                <Map/>
+                <MapWrapper/>
               </div>
             </CardContent>
           </Card>
