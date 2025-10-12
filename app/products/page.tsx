@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
 import { Filter, Search, ShoppingCart, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import Sanpham from '@/components/sanpham';
 
 // Dữ liệu mẫu sản phẩm
 const products = [
@@ -188,7 +190,7 @@ export default function ProductPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-4">Cửa hàng điện tử</h1>
+          <h1 className="text-3xl font-bold mb-4">Sản phẩm bền vững và thân thiện với Môi trường </h1>
           
           {/* Thanh tìm kiếm và sắp xếp */}
           <div className="flex flex-col md:flex-row gap-4 mb-4">
@@ -301,7 +303,7 @@ export default function ProductPage() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentProducts.map(product => (
+              {/* {currentProducts.map(product => (
                 <Card key={product.id} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="text-6xl text-center mb-4">{product.image}</div>
@@ -327,7 +329,8 @@ export default function ProductPage() {
                     </Button>
                   </CardFooter>
                 </Card>
-              ))}
+              ))} */}
+              <Sanpham/>
             </div>
 
             {filteredProducts.length === 0 && (
