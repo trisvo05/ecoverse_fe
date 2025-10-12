@@ -9,7 +9,7 @@ export default function Chatbot() {
   const [isChatVisible, setIsChatVisible] = useState(true); // điều khiển nút chat hiển thị lại sau animation
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Xin chào 👋! Tôi có thể giúp gì cho bạn?" },
+    { sender: "bot", text: "hello ae" },
   ]);
   const [loading, setLoading] = useState(false);
 
@@ -35,6 +35,7 @@ export default function Chatbot() {
         data.answer || "Xin lỗi, tôi chưa hiểu câu hỏi của bạn.";
 
       setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setMessages((prev) => [
         ...prev,

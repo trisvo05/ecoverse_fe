@@ -67,6 +67,10 @@ const Header = () => {
                 SẢN PHẨM <ChevronDown size={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
+                
+                <Link href={"/products"}><DropdownMenuItem className="text-[15px] bg-gray-200">Xem tất cả</DropdownMenuItem></Link>
+                  
+                
                 <DropdownMenuItem className="text-[15px]">
                   Đồ gia dụng Xanh
                 </DropdownMenuItem>
@@ -82,9 +86,7 @@ const Header = () => {
                 <DropdownMenuItem className="text-[15px]">
                   Sản phẩm sức khỏe & lối sống xanh
                 </DropdownMenuItem>
-                <DropdownMenuItem className="text-[15px]">
-                  Xem tất cả
-                </DropdownMenuItem>
+                
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

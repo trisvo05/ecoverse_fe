@@ -57,7 +57,7 @@ const Page = ()  =>{
 
 
                 {/*  Cac san pham  */}
-                <div className="">
+                <div className="flex flex-wrap gap-x-10">
                     <Sanpham/>
   
                 </div>
