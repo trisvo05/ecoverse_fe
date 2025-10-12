@@ -85,10 +85,11 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(
+        const response = await axios.post(
           `https://ecoverse.namtech.me/api/tmdt/products/${id}`,
           {
-            "params":{}}
+            "params":{}
+          }
   
         );
         console.log(response)
@@ -110,19 +111,20 @@ const ProductDetailPage = ({ id = 9 }: { id?: number }) => {
         const res = await axios.post(
           `https://ecoverse.namtech.me/api/tmdt/products/${id}/reviews`,
           {
-            // "jsonrpc": "2.0",
-            // "method": "call",
-            "params": {
-              "limit": 10,
-              "offset": 0,
-              "sort": "newest"
+            params: {
+                limit: 10,
+                offset: 0,
+                sort: "newest"
             },
-            // "id": null
+            headers: {
+              "Accept": "application/json",
+            }
           }
         );
         if (res.data?.result?.success) {
           setReviewsData(res.data.result.data);
         }
+        
       } catch (err) {
         console.error("Lỗi khi lấy đánh giá:", err);
       }
