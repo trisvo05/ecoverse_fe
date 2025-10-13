@@ -29,15 +29,15 @@ const Sanpham = () => {
           params: { co_chung_chi: true, limit: 10 },
         }
       );
-      const updatedProductData = {
-          ...products,
-          hinh_anh_url: {
-            ...products?.hinh_anh_url,
-            hinh_anh_url: products?.hinh_anh_url?.url
-              ? products.hinh_anh_chinh.url.replace("http://localhost:3000", "https://ecoverse.com")
-              : undefined
-          }
-        };
+      // const updatedProductData = {
+      //     ...products,
+      //     hinh_anh_url: {
+      //       ...products?.hinh_anh_url,
+      //       hinh_anh_url: products?.hinh_anh_url?.url
+      //         ? products.hinh_anh_chinh.url.replace("http://localhost:3000", "https://ecoverse.com")
+      //         : undefined
+      //     }
+      //   };
 
       const fetchedProducts = response?.data?.result?.data?.products || [];
       setProducts(fetchedProducts);
