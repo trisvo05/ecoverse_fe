@@ -146,7 +146,7 @@ const Header = () => {
 
                       <div className="flex justify-between mt-3">
                         <Link
-                          href={"/shopping/cart"}
+                          href={"/account/card_mockdata"}
                           className="py-2 w-1/2 text-center border-2 border-gray-300 rounded-sm hover:bg-gray-100 transition"
                         >
                           Xem giỏ hàng

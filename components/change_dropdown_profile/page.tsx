@@ -57,14 +57,14 @@ const Profile = () => {
         <Link href="https://ecoverse.namtech.me/odoo">
           <DropdownMenuItem>Dashboard</DropdownMenuItem>
         </Link>
-        <Link href="https://ecoverse.namtech.me/odoo/tmdt.users">
+        <Link href="/profile">
           <DropdownMenuItem>Thông tin cá nhân</DropdownMenuItem>
         </Link>
-        <Link href="https://ecoverse.namtech.me/odoo/action-159">
-          <DropdownMenuItem>Đơn hàng của tôi</DropdownMenuItem>
+        <Link href="/account/card_mockdata">
+          <DropdownMenuItem>Giỏ hàng của tôi</DropdownMenuItem>
         </Link>
         <Link href="https://ecoverse.namtech.me/odoo/action-193">
-          <DropdownMenuItem>Điểm xanh và Tiết kiệm CO2</DropdownMenuItem>
+          <DropdownMenuItem>Quản lý đơn hàng</DropdownMenuItem>
         </Link>
 
         {/* Nút đăng xuất */}

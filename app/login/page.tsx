@@ -24,21 +24,20 @@ export default function Login() {
             email: email,
             password: password,
           },
-        }
+        },
+        // {cr}
       );
       
       const result = res.data?.result;
-      console.log(result)
+      // console.log(result)
     // nếu login thành công 
-      if (result?.success) {
+      if (result.success) {
         const sessionId = result.data.session_id;
         console.log("sesssion id : ", sessionId)
 
-        // ✅ Lưu session_id vào cookie
         Cookies.set("session_id", sessionId, { expires: 7, path: "/" });
 
-        // (Tuỳ chọn) lưu thông tin user vào localStorage
-        localStorage.setItem("user", JSON.stringify(result.data));
+
 
         toast.success(result.message || "Đăng nhập thành công!", {
           duration: 1000,
