@@ -6,7 +6,7 @@ import Link from "next/link";
 
 type Product = {
   id: string | number;
-  hinh_anh?: string;
+  hinh_anh_url?: string;
   ten_san_pham?: string;
   gia_ban?: number;
   chung_chi_xanh?: {
@@ -29,6 +29,15 @@ const Sanpham = () => {
           params: { co_chung_chi: true, limit: 10 },
         }
       );
+      const updatedProductData = {
+          ...products,
+          hinh_anh_url: {
+            ...products?.hinh_anh_url,
+            hinh_anh_url: products?.hinh_anh_url?.url
+              ? products.hinh_anh_chinh.url.replace("http://localhost:3000", "https://ecoverse.com")
+              : undefined
+          }
+        };
 
       const fetchedProducts = response?.data?.result?.data?.products || [];
       setProducts(fetchedProducts);
@@ -64,7 +73,7 @@ const Sanpham = () => {
             className="w-[220px] h-[420px] bg-[#F9FAFB] rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
           >
             <img
-              src={p.hinh_anh || "/banner.png"}
+              src={p.hinh_anh_url || "https://placehold.co/800X600"}
               alt={p.ten_san_pham}
               className="w-full h-[200px] object-cover"
             />
