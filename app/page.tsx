@@ -47,7 +47,7 @@ export default function Home() {
       <div className="p-10 flex flex-col items-center gap-10 bg-white rounded-4xl mt-[100px] mb-[100px]">
         <h1 className="text-5xl"> CÁC SẢN PHẨM MỚI</h1>
         {/* bọc các sản phẩm vầo flex  */}
-        <div className="flex flex-row items-center gap-10 w-full">
+        <div className="flex flex-row items-center gap-10 justify-between w-full">
           <Sanpham/>
  
 

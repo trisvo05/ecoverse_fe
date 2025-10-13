@@ -19,10 +19,6 @@ const Profile = () => {
     // Xóa session_id khỏi cookie
     Cookies.remove("session_id");
 
-    // (Tuỳ chọn) Xóa thêm các cookies khác nếu cần
-    // Cookies.remove("user_id");
-    // Cookies.remove("access_token");
-
     // Chuyển hướng đến trang đăng nhập hoặc reload
     router.push("/login");
   };

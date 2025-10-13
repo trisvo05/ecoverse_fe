@@ -64,7 +64,7 @@ interface ApiResponse<T> {
 
 const API_BASE_URL = 'https://ecoverse.namtech.me/api/tmdt';
 
-// Helper function to get session_id from cookies
+// trả ra value của cookies session id 
 const getSessionId = (): string => {
   const cookies = document.cookie.split(';');
   // eslint-disable-next-line prefer-const
@@ -85,6 +85,7 @@ const fetchCart = async (): Promise<CartData> => {
       'Content-Type': 'application/json',
       'Cookie': `session_id=${getSessionId()}`
     },
+    credentials: 'include',
     body: JSON.stringify({
       jsonrpc: '2.0',
       method: 'call',
@@ -93,8 +94,11 @@ const fetchCart = async (): Promise<CartData> => {
     })
   });
   const data: ApiResponse<CartData> = await response.json();
-  return data.result.data;
+  console.log(data)
+  return (data.result.data) ;
+  
 };
+// console.log("giỏ hàng data : ",fetchCart())
 
 const updateCartItem = async (san_pham_id: number, so_luong: number): Promise<void> => {
   await fetch(`${API_BASE_URL}/cart/update`, {
@@ -135,6 +139,7 @@ const CartPage: React.FC = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
+    console.log("run loadcart")
     loadCart();
   }, []);
 
@@ -143,8 +148,10 @@ const CartPage: React.FC = () => {
       setLoading(true);
       const data = await fetchCart();
       setCart(data);
+  
+      console.log(data)
     } catch (error) {
-      setMessage('Không thể tải giỏ hàng');
+      setMessage('Lỗi khi call api lấy giỏ hàng ');
     } finally {
       setLoading(false);
     }

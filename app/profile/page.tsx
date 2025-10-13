@@ -77,7 +77,7 @@ const GreenEcommerceProfile = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Cookie': 'session_id=8aHB8dt2KQNqz5AIOwsM5ytj-PjdXKpL10dxbi99vODDl_eH6dpK9cJFgHvizj6VJhitnboKWMVpgizCjgCt'
+          // 'Cookie': 'session_id=8aHB8dt2KQNqz5AIOwsM5ytj-PjdXKpL10dxbi99vODDl_eH6dpK9cJFgHvizj6VJhitnboKWMVpgizCjgCt'
         },
         // credentials: 'include'
       });
@@ -90,7 +90,7 @@ const GreenEcommerceProfile = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Cookie': 'session_id=8aHB8dt2KQNqz5AIOwsM5ytj-PjdXKpL10dxbi99vODDl_eH6dpK9cJFgHvizj6VJhitnboKWMVpgizCjgCt'
+          // 'Cookie': 'session_id=8aHB8dt2KQNqz5AIOwsM5ytj-PjdXKpL10dxbi99vODDl_eH6dpK9cJFgHvizj6VJhitnboKWMVpgizCjgCt'
         },
         // credentials: 'include'
       });

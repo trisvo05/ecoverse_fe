@@ -26,7 +26,9 @@ const Sanpham = () => {
         {
           jsonrpc: "2.0",
           method: "call",
-          params: { co_chung_chi: true, limit: 10 },
+          params: { 
+            // co_chung_chi: true,
+            limit: 10 },
         }
       );
       // const updatedProductData = {
@@ -67,7 +69,7 @@ const Sanpham = () => {
        (
         <div className="text-gray-600">Không có sản phẩm nào.</div>
       ) : (
-        products.map((p, index) => (
+        products.slice(0,6).map((p, index) => (
           <Link  href={`/products/${p.id}`} 
             key={p.id || index}
             className="w-[220px] h-[420px] bg-[#F9FAFB] rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
