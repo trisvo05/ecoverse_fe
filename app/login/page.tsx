@@ -32,8 +32,11 @@ export default function Login() {
     // nếu login thành công 
       if (result.success) {
         const sessionId = result.data.session_id;
-        console.log("sesssion id : ", sessionId)
+        console.log("sesssion_id từ server : ", sessionId)
 
+
+
+        // gắn cookies để change dropdown profile có xác thực
         Cookies.set("session_id", sessionId, { expires: 7, path: "/" });
 
 
