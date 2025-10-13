@@ -56,7 +56,7 @@ const Profile = () => {
         <Link href="/profile">
           <DropdownMenuItem>Thông tin cá nhân</DropdownMenuItem>
         </Link>
-        <Link href="/account/card_mockdata">
+        <Link href="/account/cart">
           <DropdownMenuItem>Giỏ hàng của tôi</DropdownMenuItem>
         </Link>
         <Link href="https://ecoverse.namtech.me/odoo/action-193">
