@@ -195,7 +195,7 @@ const CartPage: React.FC = () => {
   const isEmpty = !cart || cart.san_pham.length === 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 p-4 ">
       <div className="max-w-6xl mx-auto pt-8">
         {/* Header */}
         <div className="mb-8">

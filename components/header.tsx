@@ -43,7 +43,7 @@ const Header = () => {
     }`;
     };
   return (
-    <div className="flex flex-col items-center gap-6 mb-[60px] mt-[-32px] mx-[-32px]">
+    <div className="flex flex-col items-center gap-4 mb-[60px] mt-[-32px] mx-[-32px]">
       {/* Header chính */}
       <div className="h-[120px] w-full flex items-center justify-between p-10 bg-white shadow-sm sticky top-0 z-50">
         {/* 1. Logo */}
@@ -168,8 +168,8 @@ const Header = () => {
       </div>
 
       {/* Header phụ */}
-      {!hideHeaderPhu && (
-        <div className="w-[70%] flex items-center justify-between text-[14px] text-gray-700">
+      {pathname !== "/shopping/checkout" && pathname !== "/account/card_mockdata" &&(
+        <div className="w-[70%] flex items-center justify-between text-[14px] text-gray-500">
           <Link href={"/ecoverse/about_us"}>Về chúng tôi</Link>
           <Link href={"/ecoverse/contact_us"}>Liên hệ</Link>
           <Link href={"/"}>Thông tin thanh toán</Link>

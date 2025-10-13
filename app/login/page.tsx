@@ -25,11 +25,10 @@ export default function Login() {
             password: password,
           },
         },
-        // {cr}
       );
       
       const result = res.data?.result;
-      // console.log(result)
+      console.log("login res ::::" , result)
     // nếu login thành công 
       if (result.success) {
         const sessionId = result.data.session_id;
