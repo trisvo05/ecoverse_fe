@@ -83,7 +83,7 @@ const fetchCart = async (): Promise<CartData> => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // 'Cookie': `session_id=${getSessionId()}`
+      // Cookie: `session_id=${getSessionId()}`
     },
     credentials: 'include',
     body: JSON.stringify({

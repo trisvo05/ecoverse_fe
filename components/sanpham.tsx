@@ -75,7 +75,7 @@ const Sanpham = () => {
             className="w-[220px] h-[420px] bg-[#F9FAFB] rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
           >
             <img
-              src={p.hinh_anh_url || "https://placehold.co/800X600"}
+              src={p.hinh_anh_url ? p.hinh_anh_url.replace('http://', 'https://') : "https://placehold.co/800X600"}
               alt={p.ten_san_pham}
               className="w-full h-[200px] object-cover"
             />
