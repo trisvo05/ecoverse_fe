@@ -407,10 +407,10 @@ const CartPage: React.FC = () => {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Link href={"/shopping/checkout"}></Link>
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
+                  <Link href={"/shopping/checkout"}><Button className="w-full bg-green-600 hover:bg-green-700">
                     Tiến Hành Thanh Toán
-                  </Button>
+                  </Button></Link>
+                  
                 </CardFooter>
               </Card>
             </div>
