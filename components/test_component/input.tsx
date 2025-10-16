@@ -10,6 +10,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { useRouter } from "next/navigation"
 
 type FormValues = {
   name: string
@@ -58,10 +59,11 @@ export default function OrderForm() {
     axios.get(`https://provinces.open-api.vn/api/d/${value}?depth=2`)
       .then(res => setWards(res.data.wards))
   }
-
+  const router = useRouter()
   const onSubmit = (data: FormValues) => {
     console.log("Order data:", data, "Total:", total)
     alert("Đặt hàng thành công!")
+    router.push("/");
   }
 
   return (
