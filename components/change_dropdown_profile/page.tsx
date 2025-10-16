@@ -23,24 +23,24 @@ const Profile = () => {
     router.push("/login");
   };
 
-  if (!sessionId)
-    return (
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <User className="cursor-pointer" />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>Đăng nhập ngay !!!</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <Link href="/login">
-            <DropdownMenuItem>Đăng nhập</DropdownMenuItem>
-          </Link>
-          <Link href="https://ecoverse.namtech.me/web/signup">
-            <DropdownMenuItem>Đăng ký</DropdownMenuItem>
-          </Link>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    );
+  // if (!sessionId)
+  //   return (
+  //     <DropdownMenu>
+  //       <DropdownMenuTrigger>
+  //         <User className="cursor-pointer" />
+  //       </DropdownMenuTrigger>
+  //       <DropdownMenuContent>
+  //         <DropdownMenuLabel>Đăng nhập ngay !!!</DropdownMenuLabel>
+  //         <DropdownMenuSeparator />
+  //         <Link href="/login">
+  //           <DropdownMenuItem>Đăng nhập</DropdownMenuItem>
+  //         </Link>
+  //         <Link href="https://ecoverse.namtech.me/web/signup">
+  //           <DropdownMenuItem>Đăng ký</DropdownMenuItem>
+  //         </Link>
+  //       </DropdownMenuContent>
+  //     </DropdownMenu>
+  //   );
 
   return (
     <DropdownMenu>

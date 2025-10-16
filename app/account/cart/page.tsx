@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Minus, Plus, Trash2, ShoppingCart, Leaf, Wind } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import Link from 'next/link';
 
 // Types
 interface Voucher {
@@ -78,59 +79,118 @@ const getSessionId = (): string => {
 };
 
 // API calls
+// Mock data thay vì call API
+// --- MOCK CART DATA ---
+let mockCart: CartData = {
+  id: 1,
+  trang_thai: "pending",
+  ngay_tao: "2025-10-16",
+  dia_chi_giao_hang: "123 Đường Xanh, Quận 1, TP.HCM",
+  phuong_thuc_thanh_toan: "COD",
+  phi_van_chuyen: 15000,
+  so_luong_san_pham: 2,
+  tong_gia_goc: 580000,
+  tong_giam_gia: 80000,
+  tong_phi_van_chuyen: 15000,
+  tong_tien: 515000,
+  tong_diem_xanh: 42,
+  tong_co2_tiet_kiem: 3.7,
+  phuong_thuc_van_chuyen: "Giao nhanh Eco",
+  san_pham: [
+    {
+      id: 1,
+      san_pham_id: 1,
+      ten_san_pham: "Bình giữ nhiệt tái chế EcoCup",
+      gia_ban: 250000,
+      so_luong: 1,
+      so_luong_ton_kho: 10,
+      loai_san_pham: "Đồ dùng xanh",
+      thanh_tien_goc: 250000,
+      gia_tri_giam_gia: 30000,
+      thanh_tien: 220000,
+      phi_van_chuyen_phan_bo: 7500,
+      hinh_anh_url: "https://images.unsplash.com/photo-1617196034705-8c7e6a3e9055?w=500",
+      voucher: {
+        id: 101,
+        ten_voucher: "Giảm 30k Đồ Xanh",
+        loai_giam_gia: "Giảm tiền",
+        gia_tri_giam: 30000,
+        so_voucher_con_lai: 100,
+      },
+      diem_xanh: 20,
+      co_chung_chi: true,
+      co_thong_tin_co2: true,
+    },
+    {
+      id: 2,
+      san_pham_id: 2,
+      ten_san_pham: "Bàn chải tre thân thiện môi trường",
+      gia_ban: 180000,
+      so_luong: 2,
+      so_luong_ton_kho: 15,
+      loai_san_pham: "Đồ cá nhân",
+      thanh_tien_goc: 360000,
+      gia_tri_giam_gia: 50000,
+      thanh_tien: 310000,
+      phi_van_chuyen_phan_bo: 7500,
+      hinh_anh_url: "https://images.unsplash.com/photo-1588776814546-1ffcf47267c5?w=500",
+      voucher: null,
+      diem_xanh: 22,
+      co_chung_chi: false,
+      co_thong_tin_co2: true,
+    },
+  ],
+};
+
+// --- MOCK FUNCTION: FETCH CART ---
 const fetchCart = async (): Promise<CartData> => {
-  const response = await fetch(`${API_BASE_URL}/cart`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      // Cookie: `session_id=${getSessionId()}`
-    },
-    credentials: 'include',
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      method: 'call',
-      params: {},
-      id: null
-    })
-  });
-  const data: ApiResponse<CartData> = await response.json();
-  console.log(data)
-  return (data.result.data) ;
-  
+  await new Promise((r) => setTimeout(r, 300)); // mô phỏng trễ
+  return structuredClone(mockCart); // tránh mutate trực tiếp
 };
-// console.log("giỏ hàng data : ",fetchCart())
 
+// --- MOCK FUNCTION: UPDATE QUANTITY ---
 const updateCartItem = async (san_pham_id: number, so_luong: number): Promise<void> => {
-  await fetch(`${API_BASE_URL}/cart/update`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Cookie': `session_id=${getSessionId()}`
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      method: 'call',
-      params: { san_pham_id, so_luong },
-      id: null
-    })
-  });
+  await new Promise((r) => setTimeout(r, 200));
+
+  mockCart.san_pham = mockCart.san_pham.map((sp) =>
+    sp.san_pham_id === san_pham_id
+      ? {
+          ...sp,
+          so_luong,
+          thanh_tien: so_luong * sp.gia_ban - sp.gia_tri_giam_gia,
+          thanh_tien_goc: so_luong * sp.gia_ban,
+        }
+      : sp
+  );
+
+  // cập nhật tổng lại
+  const tong_gia_goc = mockCart.san_pham.reduce((t, sp) => t + sp.thanh_tien_goc, 0);
+  const tong_giam_gia = mockCart.san_pham.reduce((t, sp) => t + sp.gia_tri_giam_gia, 0);
+  const tong_tien = tong_gia_goc - tong_giam_gia + mockCart.phi_van_chuyen;
+  const tong_diem_xanh = mockCart.san_pham.reduce((t, sp) => t + sp.diem_xanh, 0);
+  const tong_co2_tiet_kiem = mockCart.san_pham.reduce((t, sp) => t + (sp.co_thong_tin_co2 ? 1.2 : 0.5), 0);
+
+  mockCart = {
+    ...mockCart,
+    tong_gia_goc,
+    tong_giam_gia,
+    tong_tien,
+    tong_diem_xanh,
+    tong_co2_tiet_kiem,
+  };
 };
 
+// --- MOCK FUNCTION: CLEAR CART ---
 const clearCart = async (): Promise<void> => {
-  await fetch(`${API_BASE_URL}/cart/clear`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Cookie': `session_id=${getSessionId()}`
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      method: 'call',
-      params: {},
-      id: null
-    })
-  });
+  await new Promise((r) => setTimeout(r, 200));
+  mockCart.san_pham = [];
+  mockCart.tong_gia_goc = 0;
+  mockCart.tong_giam_gia = 0;
+  mockCart.tong_tien = 0;
+  mockCart.tong_diem_xanh = 0;
+  mockCart.tong_co2_tiet_kiem = 0;
 };
+
 
 const CartPage: React.FC = () => {
   const [cart, setCart] = useState<CartData | null>(null);
@@ -157,21 +217,45 @@ const CartPage: React.FC = () => {
     }
   };
 
-  const handleUpdateQuantity = async (san_pham_id: number, newQuantity: number) => {
-    if (newQuantity < 1) return;
-    
-    try {
-      setUpdating(true);
-      await updateCartItem(san_pham_id, newQuantity);
-      await loadCart();
-      setMessage('Đã cập nhật số lượng');
-    } catch (error) {
-      setMessage('Không thể cập nhật số lượng');
-    } finally {
-      setUpdating(false);
-      setTimeout(() => setMessage(''), 3000);
-    }
-  };
+ const handleUpdateQuantity = (san_pham_id: number, newQuantity: number) => {
+  if (!cart) return;
+  if (newQuantity < 1) return;
+
+  setCart((prev) => {
+    if (!prev) return prev;
+
+    const updatedProducts = prev.san_pham.map((item) => {
+      if (item.san_pham_id === san_pham_id) {
+        const thanh_tien_goc = item.gia_ban * newQuantity;
+        const thanh_tien = thanh_tien_goc - item.gia_tri_giam_gia;
+        return { ...item, so_luong: newQuantity, thanh_tien_goc, thanh_tien };
+      }
+      return item;
+    });
+
+    const tong_gia_goc = updatedProducts.reduce((sum, sp) => sum + sp.thanh_tien_goc, 0);
+    const tong_giam_gia = updatedProducts.reduce((sum, sp) => sum + sp.gia_tri_giam_gia, 0);
+    const tong_tien = tong_gia_goc - tong_giam_gia + prev.phi_van_chuyen;
+    const tong_diem_xanh = updatedProducts.reduce((sum, sp) => sum + sp.diem_xanh, 0);
+    const tong_co2_tiet_kiem = updatedProducts.reduce(
+      (sum, sp) => sum + (sp.co_thong_tin_co2 ? 1.2 : 0.5),
+      0
+    );
+
+    return {
+      ...prev,
+      san_pham: updatedProducts,
+      tong_gia_goc,
+      tong_giam_gia,
+      tong_tien,
+      tong_diem_xanh,
+      tong_co2_tiet_kiem,
+    };
+  });
+
+  setMessage('Đã cập nhật số lượng');
+  setTimeout(() => setMessage(''), 2000);
+};
 
   const handleClearCart = async () => {
     if (!confirm('Bạn có chắc muốn xóa tất cả sản phẩm?')) return;
@@ -356,9 +440,10 @@ const CartPage: React.FC = () => {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
+                  <Link href={"/shopping/checkout"}><Button className="w-full bg-green-600 hover:bg-green-700">
                     Tiến Hành Thanh Toán
-                  </Button>
+                  </Button></Link>
+                  
                 </CardFooter>
               </Card>
             </div>

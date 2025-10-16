@@ -131,10 +131,7 @@ const Header = () => {
                     {/* Danh sách sản phẩm */}
                     <div className="w-full h-[500px] overflow-y-scroll flex flex-col gap-10 pr-2">
                       <Sanpham2 />
-                      <Sanpham2 />
-                      <Sanpham2 />
-                      <Sanpham2 />
-                      <Sanpham2 />
+                    
                     </div>
 
                     {/* Thanh toán */}

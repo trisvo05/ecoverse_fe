@@ -65,50 +65,83 @@ const GreenEcommerceProfile = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchProfileData();
+    fetchMockData();
   }, []);
 
-  const fetchProfileData = async () => {
+  const fetchMockData = async () => {
     try {
       setLoading(true);
-      
-      // Fetch basic profile
-      const profileRes = await fetch('https://ecoverse.namtech.me/api/tmdt/profile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Cookie': 'session_id=8aHB8dt2KQNqz5AIOwsM5ytj-PjdXKpL10dxbi99vODDl_eH6dpK9cJFgHvizj6VJhitnboKWMVpgizCjgCt'
+
+      // Mock profile data
+      const profileMock: ProfileData = {
+        ten_user: "Nguyễn Minh Trí",
+        email: "tri.nguyen@example.com",
+        ngay_dang_ky: "2023-05-10T08:45:00Z"
+      };
+
+      // Mock green points data
+      const greenPointsMock: GreenPointsData = {
+        level_info: {
+          current_level: {
+            color: "#4ade80",
+            level: "Hạng Lá Xanh",
+            min_points: 0,
+            max_points: 1000
+          },
+          next_level: {
+            level: "Hạng Rừng Xanh"
+          },
+          progress_to_next: {
+            current: 750,
+            required: 1000,
+            remaining: 250
+          }
         },
-        // credentials: 'include'
-      });
-      
-      
-      const profileJson = await profileRes.json();
-      console.log("profile res: "  , profileJson)
-      // Fetch green points profile
-      const greenPointsRes = await fetch('https://ecoverse.namtech.me/api/tmdt/green-points/profile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Cookie': 'session_id=8aHB8dt2KQNqz5AIOwsM5ytj-PjdXKpL10dxbi99vODDl_eH6dpK9cJFgHvizj6VJhitnboKWMVpgizCjgCt'
+        green_metrics: {
+          diem_xanh: 750,
+          co2_tich_luy: 42.5,
+          xep_hang: 128,
+          tong_so_nguoi: 1200
         },
-        // credentials: 'include'
-      });
-      
-      const greenPointsJson = await greenPointsRes.json();
-      console.log("diem xanh res :" , greenPointsJson)
-      if (profileJson.result?.success) {
-        setProfileData(profileJson.result.data);
-      }
-      
-      if (greenPointsJson.result?.success) {
-        setGreenPointsData(greenPointsJson.result.data);
-      }
-      
+        user_info: profileMock,
+        recent_activities: [
+          {
+            mo_ta: "Mua chai nước tái chế EcoBottle",
+            ngay: "2025-10-15T10:24:00Z",
+            co2_tiet_kiem: 2.4,
+            diem_xanh: 50
+          },
+          {
+            mo_ta: "Mua túi vải đa năng GreenCarry",
+            ngay: "2025-10-10T14:00:00Z",
+            co2_tiet_kiem: 1.8,
+            diem_xanh: 40
+          },
+          {
+            mo_ta: "Tham gia chương trình “Thu gom rác điện tử”",
+            ngay: "2025-10-05T09:00:00Z",
+            co2_tiet_kiem: 5.2,
+            diem_xanh: 100
+          },
+          {
+            mo_ta: "Đặt mua bàn làm việc từ gỗ tái chế EcoDesk",
+            ngay: "2025-09-28T15:30:00Z",
+            co2_tiet_kiem: 12.5,
+            diem_xanh: 200
+          }
+        ],
+        statistics: {
+          total_orders: 24,
+          green_orders: 16
+        }
+      };
+
+      setProfileData(profileMock);
+      setGreenPointsData(greenPointsMock);
       setError(null);
     } catch (err) {
-      setError('Không thể tải dữ liệu. Vui lòng thử lại sau.');
-      console.error('Error fetching data:', err);
+      setError("Không thể tải dữ liệu mock.");
+      console.error("Mock data error:", err);
     } finally {
       setLoading(false);
     }
@@ -125,7 +158,7 @@ const GreenEcommerceProfile = () => {
     });
   };
 
-  const formatNumber = (num:number) => {
+  const formatNumber = (num: number) => {
     return new Intl.NumberFormat('vi-VN').format(num);
   };
 
@@ -146,20 +179,8 @@ const GreenEcommerceProfile = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-3xl">⚠️</span>
-          </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Lỗi tải dữ liệu</h2>
-          <p className="text-gray-600 mb-6">{error}</p>
-          <button 
-            onClick={fetchProfileData}
-            className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-          >
-            Thử lại
-          </button>
-        </div>
+      <div className="min-h-screen flex items-center justify-center text-red-600 text-lg">
+        {error}
       </div>
     );
   }
@@ -174,7 +195,8 @@ const GreenEcommerceProfile = () => {
     ? (levelInfo.progress_to_next.current / levelInfo.progress_to_next.required) * 100 
     : 0;
 
-  return (
+  // ✅ Giao diện y hệt bản gốc
+ return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
       <div className="max-w-7xl mx-auto p-4 md:p-8">
         {/* Header Profile Card */}

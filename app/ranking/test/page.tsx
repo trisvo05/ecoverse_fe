@@ -3,166 +3,232 @@ import React from 'react';
 import { Trophy, TrendingUp, Leaf, Award, Users, BarChart3 } from 'lucide-react';
 
 const GreenLeaderboard = () => {
-  // Mock data
-  const data = {
-    period: "all",
-    leaderboard: [
-      {
-        rank: 1,
-        user: {
-          id: 1,
-          ten_user: "Người dùng",
-          email_masked: null,
-          ngay_dang_ky: "2025-09-03T09:46:38"
-        },
-        metrics: {
-          diem_xanh: 2450,
-          co2_tich_luy: 0.2,
-          total_orders: 8,
-          green_orders: 7,
-          green_ratio: 87.5
-        },
-        level: {
-          name: "Bạch kim",
-          color: "#E5E4E2"
-        }
-      },
-      {
-        rank: 2,
-        user: {
-          id: 2,
-          ten_user: "Người dùng 1",
-          email_masked: null,
-          ngay_dang_ky: "2025-09-11T10:47:35"
-        },
-        metrics: {
-          diem_xanh: 250,
-          co2_tich_luy: 1.5,
-          total_orders: 2,
-          green_orders: 1,
-          green_ratio: 50.0
-        },
-        level: {
-          name: "Bạc",
-          color: "#C0C0C0"
-        }
-      },
-      {
-        rank: 3,
-        user: {
-          id: 3,
-          ten_user: "Nguyễn Văn A",
-          email_masked: "tes***@example.com",
-          ngay_dang_ky: "2025-10-05T06:32:01"
-        },
-        metrics: {
-          diem_xanh: 0,
-          co2_tich_luy: 0.0,
-          total_orders: 0,
-          green_orders: 0,
-          green_ratio: 0
-        },
-        level: {
-          name: "Đồng",
-          color: "#CD7F32"
-        }
-      },
-      {
-        rank: 4,
-        user: {
-          id: 4,
-          ten_user: "Võ Minh Trí",
-          email_masked: "tri***@example.com",
-          ngay_dang_ky: "2025-10-05T06:43:52"
-        },
-        metrics: {
-          diem_xanh: 0,
-          co2_tich_luy: 0.0,
-          total_orders: 0,
-          green_orders: 0,
-          green_ratio: 0
-        },
-        level: {
-          name: "Đồng",
-          color: "#CD7F32"
-        }
-      }
-    ],
-    top_3: [
-      {
-        rank: 1,
-        user: {
-          id: 1,
-          ten_user: "Người dùng",
-          email_masked: null,
-          ngay_dang_ky: "2025-09-03T09:46:38"
-        },
-        metrics: {
-          diem_xanh: 2450,
-          co2_tich_luy: 0.2,
-          total_orders: 8,
-          green_orders: 7,
-          green_ratio: 87.5
-        },
-        level: {
-          name: "Bạch kim",
-          color: "#E5E4E2"
-        }
-      },
-      {
-        rank: 2,
-        user: {
-          id: 2,
-          ten_user: "Người dùng 1",
-          email_masked: null,
-          ngay_dang_ky: "2025-09-11T10:47:35"
-        },
-        metrics: {
-          diem_xanh: 250,
-          co2_tich_luy: 1.5,
-          total_orders: 2,
-          green_orders: 1,
-          green_ratio: 50.0
-        },
-        level: {
-          name: "Bạc",
-          color: "#C0C0C0"
-        }
-      },
-      {
-        rank: 3,
-        user: {
-          id: 3,
-          ten_user: "Nguyễn Văn A",
-          email_masked: "tes***@example.com",
-          ngay_dang_ky: "2025-10-05T06:32:01"
-        },
-        metrics: {
-          diem_xanh: 0,
-          co2_tich_luy: 0.0,
-          total_orders: 0,
-          green_orders: 0,
-          green_ratio: 0
-        },
-        level: {
-          name: "Đồng",
-          color: "#CD7F32"
-        }
-      }
-    ],
-    stats: {
-      total_active_users: 4,
-      avg_green_points: 675.0,
-      total_co2_saved: 1.7
-    }
+// Mock data mở rộng
+interface LeaderboardEntry {
+  rank: number;
+  user: {
+    id: number;
+    ten_user: string;
+    email_masked: string;
+    ngay_dang_ky: string;
   };
+  metrics: {
+    diem_xanh: number;
+    co2_tich_luy: number;
+    total_orders: number;
+    green_orders: number;
+    green_ratio: number;
+  };
+  level: {
+    name: string;
+    color: string;
+  };
+}
 
-  const getMedalIcon = (rank:number) => {
-    if (rank === 1) return '🥇';
-    if (rank === 2) return '🥈';
-    if (rank === 3) return '🥉';
-    return rank;
+interface Data {
+  period: string;
+  leaderboard: LeaderboardEntry[];
+  top_3: LeaderboardEntry[];
+  stats: {
+    total_active_users: number;
+    avg_green_points: number;
+    total_co2_saved: number;
   };
+}
+
+const data: Data = {
+  period: "all",
+  leaderboard: [
+    {
+      rank: 1,
+      user: {
+        id: 1,
+        ten_user: "Nguyễn Minh Khang",
+        email_masked: "kha***@gmail.com",
+        ngay_dang_ky: "2025-05-12T09:46:38",
+      },
+      metrics: {
+        diem_xanh: 2850,
+        co2_tich_luy: 0.5,
+        total_orders: 10,
+        green_orders: 9,
+        green_ratio: 90.0,
+      },
+      level: { name: "Bạch kim", color: "#E5E4E2" },
+    },
+    {
+      rank: 2,
+      user: {
+        id: 2,
+        ten_user: "Võ Minh Trí",
+        email_masked: "tri***@example.com",
+        ngay_dang_ky: "2025-04-22T08:10:11",
+      },
+      metrics: {
+        diem_xanh: 2100,
+        co2_tich_luy: 0.8,
+        total_orders: 7,
+        green_orders: 6,
+        green_ratio: 85.7,
+      },
+      level: { name: "Vàng", color: "#FFD700" },
+    },
+    {
+      rank: 3,
+      user: {
+        id: 3,
+        ten_user: "Trần Thảo Nhi",
+        email_masked: "nhi***@example.com",
+        ngay_dang_ky: "2025-07-03T06:32:01",
+      },
+      metrics: {
+        diem_xanh: 1350,
+        co2_tich_luy: 1.2,
+        total_orders: 5,
+        green_orders: 4,
+        green_ratio: 80.0,
+      },
+      level: { name: "Bạc", color: "#C0C0C0" },
+    },
+    {
+      rank: 4,
+      user: {
+        id: 4,
+        ten_user: "Phạm Gia Hưng",
+        email_masked: "hun***@gmail.com",
+        ngay_dang_ky: "2025-06-14T14:05:45",
+      },
+      metrics: {
+        diem_xanh: 850,
+        co2_tich_luy: 1.0,
+        total_orders: 4,
+        green_orders: 3,
+        green_ratio: 75.0,
+      },
+      level: { name: "Đồng", color: "#CD7F32" },
+    },
+    {
+      rank: 5,
+      user: {
+        id: 5,
+        ten_user: "Nguyễn Văn A",
+        email_masked: "ngv***@gmail.com",
+        ngay_dang_ky: "2025-09-03T09:46:38",
+      },
+      metrics: {
+        diem_xanh: 650,
+        co2_tich_luy: 1.3,
+        total_orders: 3,
+        green_orders: 2,
+        green_ratio: 66.7,
+      },
+      level: { name: "Đồng", color: "#CD7F32" },
+    },
+    {
+      rank: 6,
+      user: {
+        id: 6,
+        ten_user: "Nguyễn Thanh Bình",
+        email_masked: "bin***@yahoo.com",
+        ngay_dang_ky: "2025-08-10T07:12:31",
+      },
+      metrics: {
+        diem_xanh: 400,
+        co2_tich_luy: 0.9,
+        total_orders: 2,
+        green_orders: 1,
+        green_ratio: 50.0,
+      },
+      level: { name: "Đồng", color: "#CD7F32" },
+    },
+    {
+      rank: 7,
+      user: {
+        id: 7,
+        ten_user: "Lê Mai Anh",
+        email_masked: "anh***@gmail.com",
+        ngay_dang_ky: "2025-09-01T09:11:42",
+      },
+      metrics: {
+        diem_xanh: 320,
+        co2_tich_luy: 1.1,
+        total_orders: 2,
+        green_orders: 1,
+        green_ratio: 50.0,
+      },
+      level: { name: "Đồng", color: "#CD7F32" },
+    },
+    {
+      rank: 8,
+      user: {
+        id: 8,
+        ten_user: "Ngô Minh Đức",
+        email_masked: "duc***@outlook.com",
+        ngay_dang_ky: "2025-09-20T11:22:01",
+      },
+      metrics: {
+        diem_xanh: 180,
+        co2_tich_luy: 1.4,
+        total_orders: 1,
+        green_orders: 0,
+        green_ratio: 0.0,
+      },
+      level: { name: "Đồng", color: "#CD7F32" },
+    },
+    {
+      rank: 9,
+      user: {
+        id: 9,
+        ten_user: "Phan Bảo Long",
+        email_masked: "lon***@gmail.com",
+        ngay_dang_ky: "2025-10-05T06:43:52",
+      },
+      metrics: {
+        diem_xanh: 120,
+        co2_tich_luy: 0.5,
+        total_orders: 1,
+        green_orders: 0,
+        green_ratio: 0.0,
+      },
+      level: { name: "Đồng", color: "#CD7F32" },
+    },
+    {
+      rank: 10,
+      user: {
+        id: 10,
+        ten_user: "Đặng Thu Hà",
+        email_masked: "tha***@gmail.com",
+        ngay_dang_ky: "2025-10-10T08:30:00",
+      },
+      metrics: {
+        diem_xanh: 60,
+        co2_tich_luy: 0.3,
+        total_orders: 1,
+        green_orders: 0,
+        green_ratio: 0.0,
+      },
+      level: { name: "Đồng", color: "#CD7F32" },
+    },
+  ],
+  top_3: [],
+  stats: {
+    total_active_users: 10,
+    avg_green_points: 986.0,
+    total_co2_saved: 9.0,
+  },
+};
+
+// Cập nhật top 3 tự động từ leaderboard
+data.top_3 = data.leaderboard.slice(0, 3);
+
+// Hàm hiển thị huy chương
+const getMedalIcon = (rank:number) => {
+  if (rank === 1) return "🥇";
+  if (rank === 2) return "🥈";
+  if (rank === 3) return "🥉";
+  return rank;
+};
+
 
   const getMedalClass = (rank:number) => {
     if (rank === 1) return 'bg-gradient-to-br from-yellow-400 to-yellow-600';
@@ -232,7 +298,7 @@ const GreenLeaderboard = () => {
               <div className="flex-1 max-w-xs">
                 <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-6 shadow-xl border-4 border-gray-300 transform hover:scale-105 transition-transform">
                   <div className="text-center">
-                    <div className=" mb-3">🥈</div>
+                    <div className=" mb-3 text-xl">🥈</div>
                     <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center  font-bold text-white shadow-lg">
                       {data.top_3[1].user.ten_user.charAt(0)}
                     </div>

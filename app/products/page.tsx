@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -9,26 +10,28 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
 import { Filter, Search, ShoppingCart, Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import Sanpham from '@/components/sanpham';
 
 // Dữ liệu mẫu sản phẩm
 const products = [
-  { id: 1, name: 'iPhone 15 Pro', price: 28990000, category: 'Điện thoại', brand: 'Apple', rating: 4.8, image: '📱' },
-  { id: 2, name: 'Samsung Galaxy S24', price: 22990000, category: 'Điện thoại', brand: 'Samsung', rating: 4.7, image: '📱' },
-  { id: 3, name: 'MacBook Pro M3', price: 52990000, category: 'Laptop', brand: 'Apple', rating: 4.9, image: '💻' },
-  { id: 4, name: 'Dell XPS 15', price: 42990000, category: 'Laptop', brand: 'Dell', rating: 4.6, image: '💻' },
-  { id: 5, name: 'iPad Air', price: 16990000, category: 'Máy tính bảng', brand: 'Apple', rating: 4.7, image: '📱' },
-  { id: 6, name: 'AirPods Pro', price: 6990000, category: 'Phụ kiện', brand: 'Apple', rating: 4.8, image: '🎧' },
-  { id: 7, name: 'Sony WH-1000XM5', price: 8990000, category: 'Phụ kiện', brand: 'Sony', rating: 4.9, image: '🎧' },
-  { id: 8, name: 'Xiaomi 14', price: 18990000, category: 'Điện thoại', brand: 'Xiaomi', rating: 4.5, image: '📱' },
-  { id: 9, name: 'Asus ROG Zephyrus', price: 38990000, category: 'Laptop', brand: 'Asus', rating: 4.7, image: '💻' },
-  { id: 10, name: 'Samsung Tab S9', price: 21990000, category: 'Máy tính bảng', brand: 'Samsung', rating: 4.6, image: '📱' },
+  { id: 1, name: 'Bàn chải đánh răng tre tự nhiên', price: 45000, category: 'Chăm sóc cá nhân', brand: 'EcoLife', rating: 4.8, image: 'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400' },
+  { id: 2, name: 'Túi vải canvas tái chế', price: 120000, category: 'Túi & Balo', brand: 'GreenBag', rating: 4.7, image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400' },
+  { id: 3, name: 'Bình giữ nhiệt inox 500ml', price: 250000, category: 'Đồ dùng gia đình', brand: 'EcoVessel', rating: 4.9, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400' },
+  { id: 4, name: 'Ống hút inox bộ 4 cái', price: 65000, category: 'Đồ dùng gia đình', brand: 'GreenStraw', rating: 4.6, image: 'https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=400' },
+  { id: 5, name: 'Xà phòng handmade hữu cơ', price: 85000, category: 'Chăm sóc cá nhân', brand: 'NaturalSoap', rating: 4.7, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxIp0EY_wV15bkI78jy-7CCST5hUYxK3YMKw&s' },
+  { id: 6, name: 'Túi lưới đi chợ cotton', price: 55000, category: 'Túi & Balo', brand: 'EcoNet', rating: 4.8, image: 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400' },
+  { id: 7, name: 'Bàn chải rửa bát gỗ dừa', price: 35000, category: 'Đồ dùng gia đình', brand: 'CocoClean', rating: 4.9, image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400' },
+  { id: 8, name: 'Dầu gội thảo mộc organic', price: 180000, category: 'Chăm sóc cá nhân', brand: 'HerbShine', rating: 4.5, image: 'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400' },
+  { id: 9, name: 'Balo vải bố tái chế', price: 420000, category: 'Túi & Balo', brand: 'ReBackpack', rating: 4.7, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400' },
+  { id: 10, name: 'Hộp đựng thực phẩm inox 3 tầng', price: 320000, category: 'Đồ dùng gia đình', brand: 'EcoBox', rating: 4.6, image: 'https://bizweb.dktcdn.net/thumb/grande/100/443/479/products/aba7bec5fedc4759948df16bff2c73c9.jpg?v=1702873642240' },
+  { id: 11, name: 'Bộ đũa muỗng tre du lịch', price: 75000, category: 'Đồ dùng gia đình', brand: 'BambooSet', rating: 4.8, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCF5iHOp-JQnPDhvuRXzGohD7fRSsM0qGe4g&s' },
+  { id: 12, name: 'Khăn tắm cotton hữu cơ', price: 195000, category: 'Chăm sóc cá nhân', brand: 'OrganicTowel', rating: 4.7, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFdRBu4iEsYLZsPcAkjGxEyR3G4t3ivUfxHg&s' },
 ];
 
-const categories = ['Điện thoại', 'Laptop', 'Máy tính bảng', 'Phụ kiện'];
-const brands = ['Apple', 'Samsung', 'Dell', 'Sony', 'Xiaomi', 'Asus'];
+const categories = ['Chăm sóc cá nhân', 'Đồ dùng gia đình', 'Túi & Balo'];
+const brands = ['EcoLife', 'GreenBag', 'EcoVessel', 'GreenStraw', 'NaturalSoap', 'EcoNet', 'CocoClean', 'HerbShine', 'ReBackpack', 'EcoBox', 'BambooSet', 'OrganicTowel'];
 
 export default function ProductPage() {
+  const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState([0, 60000000]);
@@ -37,6 +40,11 @@ export default function ProductPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+
+  // Hàm xử lý khi click vào sản phẩm
+  const handleProductClick = (productId: number) => {
+    router.push(`/products/${productId}`);
+  };
 
   // Xử lý lọc danh mục
   const handleCategoryChange = (category: string) => {
@@ -48,7 +56,7 @@ export default function ProductPage() {
   };
 
   // Xử lý lọc thương hiệu
-  const handleBrandChange = (brand:string) => {
+  const handleBrandChange = (brand: string) => {
     setSelectedBrands(prev =>
       prev.includes(brand)
         ? prev.filter(b => b !== brand)
@@ -69,7 +77,6 @@ export default function ProductPage() {
       return matchCategory && matchBrand && matchPrice && matchRating && matchSearch;
     });
 
-    // Sắp xếp
     filtered.sort((a, b) => {
       switch (sortBy) {
         case 'price-asc':
@@ -87,7 +94,6 @@ export default function ProductPage() {
     return filtered;
   }, [selectedCategories, selectedBrands, priceRange, minRating, sortBy, searchTerm]);
 
-  // Reset filters
   const resetFilters = () => {
     setSelectedCategories([]);
     setSelectedBrands([]);
@@ -97,21 +103,17 @@ export default function ProductPage() {
     setCurrentPage(1);
   };
 
-  // Tính toán pagination
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentProducts = filteredProducts.slice(startIndex, endIndex);
 
-  // Reset về trang 1 khi filter thay đổi
   React.useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategories, selectedBrands, priceRange, minRating, searchTerm, sortBy]);
 
-  // Component bộ lọc
   const FilterSection = () => (
     <div className="space-y-6">
-      {/* Danh mục */}
       <div>
         <h3 className="font-semibold mb-3">Danh mục</h3>
         <div className="space-y-2">
@@ -130,7 +132,6 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Thương hiệu */}
       <div>
         <h3 className="font-semibold mb-3">Thương hiệu</h3>
         <div className="space-y-2">
@@ -149,7 +150,6 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Khoảng giá */}
       <div>
         <h3 className="font-semibold mb-3">Khoảng giá</h3>
         <Slider
@@ -165,7 +165,6 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Đánh giá */}
       <div>
         <h3 className="font-semibold mb-3">Đánh giá tối thiểu</h3>
         <Select value={minRating.toString()} onValueChange={(v) => setMinRating(Number(v))}>
@@ -189,11 +188,9 @@ export default function ProductPage() {
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-4">Sản phẩm bền vững và thân thiện với Môi trường </h1>
+          <h1 className="text-3xl font-bold mb-4">Sản phẩm bền vững và thân thiện với Môi trường</h1>
           
-          {/* Thanh tìm kiếm và sắp xếp */}
           <div className="flex flex-col md:flex-row gap-4 mb-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -219,7 +216,6 @@ export default function ProductPage() {
                 </SelectContent>
               </Select>
 
-              {/* Mobile filter button */}
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="outline" className="md:hidden">
@@ -238,7 +234,6 @@ export default function ProductPage() {
             </div>
           </div>
 
-          {/* Active filters */}
           {(selectedCategories.length > 0 || selectedBrands.length > 0) && (
             <div className="flex flex-wrap gap-2">
               {selectedCategories.map(cat => (
@@ -267,9 +262,7 @@ export default function ProductPage() {
           )}
         </div>
 
-        {/* Main content */}
         <div className="flex gap-6">
-          {/* Sidebar filters - Desktop */}
           <div className="hidden md:block w-64 flex-shrink-0">
             <Card className="sticky top-4">
               <CardHeader>
@@ -284,7 +277,6 @@ export default function ProductPage() {
             </Card>
           </div>
 
-          {/* Product grid */}
           <div className="flex-1">
             <div className="mb-4 flex justify-between items-center">
               <div className="text-sm text-gray-600">
@@ -304,10 +296,20 @@ export default function ProductPage() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* {currentProducts.map(product => (
-                <Card key={product.id} className="hover:shadow-lg transition-shadow">
+              {currentProducts.map(product => (
+                <Card 
+                  key={product.id} 
+                  className="hover:shadow-lg transition-shadow cursor-pointer"
+                  onClick={() => handleProductClick(product.id)}
+                >
                   <CardHeader>
-                    <div className="text-6xl text-center mb-4">{product.image}</div>
+                    <div className="mb-4 overflow-hidden rounded-lg">
+                      <img 
+                        src={product.image} 
+                        alt={product.name}  
+                        className='h-[200px] w-full object-cover hover:scale-105 transition-transform duration-300'
+                      />
+                    </div>
                     <CardTitle className="text-lg">{product.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -324,14 +326,19 @@ export default function ProductPage() {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full">
+                    <Button 
+                      className="w-full"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        alert(`Đã thêm ${product.name} vào giỏ hàng!`);
+                      }}
+                    >
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       Thêm vào giỏ
                     </Button>
                   </CardFooter>
                 </Card>
-              ))} */}
-              <Sanpham/>
+              ))}
             </div>
 
             {filteredProducts.length === 0 && (
@@ -343,7 +350,6 @@ export default function ProductPage() {
               </div>
             )}
 
-            {/* Pagination */}
             {filteredProducts.length > 0 && totalPages > 1 && (
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-sm text-gray-600">
@@ -363,7 +369,6 @@ export default function ProductPage() {
                   
                   <div className="flex gap-1">
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => {
-                      // Hiển thị trang đầu, cuối, và các trang xung quanh trang hiện tại
                       if (
                         page === 1 ||
                         page === totalPages ||

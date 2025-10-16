@@ -15,9 +15,9 @@ const Page = ()  =>{
                 <div className="text-2xl  mb-5 mt-5">TỔNG ĐƠN HÀNG</div>
                 <div className="w-[500px] h-[400px] overflow-scroll overflow-x-hidden border-y-1 border-solid border-gray-300">
                     <Sanpham2/>
+                    {/* <Sanpham2/>
                     <Sanpham2/>
-                    <Sanpham2/>
-                    <Sanpham2/>
+                    <Sanpham2/> */}
                 </div>
                 {/* tinh toan so tien  */}
                 <div className="mt-10">

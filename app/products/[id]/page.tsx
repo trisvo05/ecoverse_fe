@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { ShoppingCart, CreditCard, Star, Leaf, Award, Package, TrendingDown, Calendar, User, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import { useParams } from 'next/navigation';
+import Link from 'next/link';
 
 const ProductDetailPage = () => {
   type ProductData = {
@@ -60,81 +59,82 @@ const ProductDetailPage = () => {
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
   const [hoverRating, setHoverRating] = useState(0);
-  const params = useParams();
-  const { id } = params; // id từ URL
+
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.post(
-          `https://ecoverse.namtech.me/api/tmdt/products/${id}`,
-          {
-            params: {}
-          },
-          {
-            headers: {
-              "Accept": "application/json",
-              "Content-Type": "application/json"
-            }
-          }
-        );
-        // If you want to replace the URL string, do it directly (not with map)
-        const updatedProductData = {
-          ...productData,
-          hinh_anh_chinh: {
-            ...productData?.hinh_anh_chinh,
-            url: productData?.hinh_anh_chinh?.url
-              ? productData.hinh_anh_chinh.url.replace("http://localhost:3000", "https://ecoverse.com")
-              : undefined
-          }
-        };
-        
-        console.log("Product response:", response);
-
-        if (response.data?.result?.success) {
-          setProductData(response.data.result.data);
-        } else {
-          console.error("Không lấy được dữ liệu sản phẩm:", response.data);
+    // MOCK DATA
+    const mockProduct: ProductData = {
+      ten_san_pham: "Bình giữ nhiệt tái chế Ecover",
+      danh_muc: [{ ten_danh_muc: "Sản phẩm xanh" }],
+      loai_san_pham: "new",
+      hinh_anh_chinh: {
+        url: "https://quatang3a.com/wp-content/uploads/2024/08/238.jpg"
+      },
+      gia_ban: 299000,
+      so_luong_ton_kho: 25,
+      voucher_kha_dung: [
+        { ten_voucher: "Giảm 20% khi mua 2 sản phẩm", so_voucher_con_lai: 8 }
+      ],
+      thong_tin_co2: {
+        co_thong_tin: true,
+        phan_tich: {
+          icon: "🌍",
+          thong_diep: "Sản phẩm giúp giảm phát thải khí CO₂ nhờ sử dụng vật liệu tái chế."
+        },
+        phan_tram_giam_co2: 35,
+        co2_san_pham: 2.3,
+        co2_san_pham_thong_thuong: 3.5
+      },
+      chung_chi_xanh: {
+        co_chung_chi: true,
+        loai_chung_chi_display: "EcoLabel Việt Nam",
+        diem_xanh: 85,
+        to_chuc_cap: {
+          ten_to_chuc: "Tổ chức Môi trường Việt Xanh",
+          uy_tin: 4
         }
-      } catch (error) {
-        console.error("Lỗi khi gọi API sản phẩm:", error);
       }
     };
 
-    const fetchReviews = async () => {
-      try {
-        const res = await axios.post(
-          `https://ecoverse.namtech.me/api/tmdt/products/${id}/reviews`,
-          {
-            params: {
-              limit: 10,
-              offset: 0,
-              sort: "newest"
-            }
-          },
-          {
-            headers: {
-              "Accept": "application/json",
-              "Content-Type": "application/json"
-            }
-          }
-        );
-        
-        console.log("Reviews response:", res);
-        
-        if (res.data?.result?.success) {
-          setReviewsData(res.data.result.data);
+    const mockReviews: ReviewsData = {
+      rating_stats: {
+        total_reviews: 5,
+        average_rating: 4.4,
+        rating_distribution: { 5: 3, 4: 1, 3: 1, 2: 0, 1: 0 }
+      },
+      reviews: [
+        {
+          id: 1,
+          user: { ten_user: "Minh Trí" },
+          diem_danh_gia: 5,
+          nhan_xet: "Sản phẩm chất lượng tốt, giữ nhiệt lâu và thân thiện môi trường.",
+          ngay_mua: "2025-09-28",
+          so_luong_mua: 1
+        },
+        {
+          id: 2,
+          user: { ten_user: "Lan Phương" },
+          diem_danh_gia: 4,
+          nhan_xet: "Thiết kế đẹp, nhưng giao hàng hơi chậm.",
+          ngay_mua: "2025-09-22",
+          so_luong_mua: 2
+        },
+        {
+          id: 3,
+          user: { ten_user: "Hoàng Anh" },
+          diem_danh_gia: 3,
+          nhan_xet: "Sản phẩm ổn, nhưng giá hơi cao so với kỳ vọng.",
+          ngay_mua: "2025-09-20",
+          so_luong_mua: 1
         }
-      } catch (err) {
-        console.error("Lỗi khi lấy đánh giá:", err);
-      } finally {
-        setLoading(false);
-      }
+      ]
     };
 
-    fetchProduct();
-    fetchReviews();
-  }, [id]);
+    setTimeout(() => {
+      setProductData(mockProduct);
+      setReviewsData(mockReviews);
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   const formatPrice = (price:number) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
@@ -359,13 +359,14 @@ const ProductDetailPage = () => {
                     <ShoppingCart className="w-5 h-5 mr-2" />
                     Thêm vào giỏ
                   </Button>
-                  <Button
+                  <Link href={"/shopping/checkout"}><Button
                     onClick={handleCheckout}
                     className="flex-1 h-12 text-base font-semibold bg-green-600 hover:bg-green-700"
                   >
                     <CreditCard className="w-5 h-5 mr-2" />
-                    Thanh toán
-                  </Button>
+                    Mua ngay
+                  </Button></Link>
+                  
                 </div>
               </div>
             </CardContent>
