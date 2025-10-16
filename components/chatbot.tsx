@@ -9,7 +9,7 @@ export default function Chatbot() {
   const [isChatVisible, setIsChatVisible] = useState(true); // điều khiển nút chat hiển thị lại sau animation
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "hello ae" },
+    { sender: "bot", text: "Chào bạn ! Tôi có thể hỗ trợ bạn tìm kiếm sản phẩm bền vững . Ngoài ra bạn có thể hỏi tôi về Quy trình kiểm định chất lượng và Hệ thống điểm xanh nổi bật của ECoVerse nhé !!!" },
   ]);
   const [loading, setLoading] = useState(false);
 
