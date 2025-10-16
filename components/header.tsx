@@ -121,7 +121,7 @@ const Header = () => {
             </SheetTrigger>
 
             <SheetContent className="max-w-[800px] sm:max-w-[500px] h-full">
-              <Protected>
+              {/* <Protected> */}
                 <SheetHeader>
                   <SheetTitle>GIỎ HÀNG CỦA TÔI</SheetTitle>
 
@@ -158,7 +158,7 @@ const Header = () => {
                     </div>
                   </div>
                 </SheetHeader>
-              </Protected>
+              {/* </Protected> */}
             </SheetContent>
           </Sheet>
         </div>
